@@ -5,12 +5,13 @@ Member::Member()
 
 }
 
-void Member::add_member(std::string name, std::string age, std::string phonenumber, std::string ID_number)
+void Member::add_member(std::string name, std::string ID_number, std::string Class, std::string email, std::string phonenumber)
 {
 	this->name = name;
-	this->age = age;
-	this->phonenumber = phonenumber;
 	this->ID_number = ID_number;
+	this->Class = Class;
+	this->email = email;
+	this->phonenumber = phonenumber;
 }
 
 void Member::delete_member()
