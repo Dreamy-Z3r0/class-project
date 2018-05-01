@@ -1,0 +1,5 @@
+﻿  Menu.cpp
+f:\lab_management\lab_management\lab_management\src\menu.cpp(165): warning C4102: 'input_case': unreferenced label
+f:\lab_management\lab_management\lab_management\src\menu.cpp(191): warning C4102: 'input_case': unreferenced label
+f:\lab_management\lab_management\lab_management\src\menu.cpp(221): warning C4715: 'MENU::yes_no_option': not all control paths return a value
+  Lab_Management.vcxproj -> F:\Lab_Management\Lab_Management\Debug\Lab_Management.exe
