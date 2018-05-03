@@ -78,7 +78,7 @@ void MENU::add_equipment()
 		std::cout << "Enter the price of the book" << std::endl;
 		std::cin >> price;
 		std::cout << "Debug e_num before" << e_num << " " << equip_arr_len << std::endl;
-		Equip_list[e_num].add_equipment(label, model, number, price);
+		//Equip_list[e_num].add_equipment(label, model, number, price);
 		e_num++;
 		std::cout << "Debug e_num after" << e_num << std::endl;
 		std::cout << "Do you want to continue? [y/n]" << std::endl;
@@ -89,29 +89,30 @@ void MENU::add_equipment()
 
 void MENU::add_member()
 {
-	std::string name, age, phonenumber, ID_number;
+	std::string name, email;
+	unsigned long phonenumber, ID_number;
 	while (cont) {
-		if (m_num >= mem_arr_len)
+		if (l_num >= lec_arr_len)
 		{
-			Member *m_temp = new Member[mem_arr_len + 1];
-			for (int i = 0; i < mem_arr_len; i++)
+			Lectures *l_temp = new Lectures[lec_arr_len + 1];
+			for (int i = 0; i < lec_arr_len; i++)
 			{
-				m_temp[i] = Mem_list[i];
+				l_temp[i] = Lec_list[i];
 			}
-			mem_arr_len++;
-			delete[] Mem_list;
-			Mem_list = m_temp; // Copy the address of the temp array to Mem_list
+			lec_arr_len++;
+			delete[] Lec_list;
+			Lec_list = l_temp; // Copy the address of the temp array to Lec_list
 		}
 		std::cout << "Enter the name" << std::endl;
 		std::cin >> name;
 		std::cout << "Enter the age" << std::endl;
-		std::cin >> age;
+		std::cin >> email;
 		std::cout << "Enter the phone number" << std::endl;
 		std::cin >> phonenumber;
 		std::cout << "Enter the ID number" << std::endl;
 		std::cin >> ID_number;
-		Mem_list[m_num].add_member(name, age, phonenumber, ID_number);
-		m_num++;
+		Lec_list[l_num].Add_a_Member(name, email, phonenumber, ID_number);
+		l_num++;
 		std::cout << "Do you want to continue? [y/n]" << std::endl;
 		cont = this->yes_no_option();
 		}
@@ -148,7 +149,7 @@ void MENU::print_equip_list()
 
 void MENU::print_member_list()
 {
-	if (this->m_num == 0)
+	if (this->l_num == 0)
 	{
 		std::cout << "The Member list is currently empty" << std::endl;
 		input_case:
@@ -160,9 +161,9 @@ void MENU::print_member_list()
 	else {
 		std::cout << "Member list " << std::endl;
 		std::cout << "No\t" << "Name\t\t\t" << "age\t" << "phonenumber\t\t\t" << "ID number" << std::endl;
-		for (int i = 0; i < m_num; i++) {
+		for (int i = 0; i < l_num; i++) {
 			std::cout << i + 1 << "\t";
-			Mem_list[i].print_member_info();
+			Lec_list[i].print_info();
 		}
 		std::cout << "press 'y' to go back to the main menu" << std::endl;
 		cont = this->yes_no_option();

@@ -4,12 +4,14 @@
 
 class MENU {
 private:
-	int equip_arr_len = 1, mem_arr_len = 1, e_num = 0, m_num = 0;
+	int equip_arr_len = 1, lec_arr_len = 1, e_num = 0, l_num = 0;
 	int choice;
 	bool cont = true;
 	Equipment* Equip_list = new Equipment[equip_arr_len];
-	Member* Mem_list = new Member[mem_arr_len];
+	
+	Lectures* Lec_list = new Lectures[lec_arr_len];
 
+	
 public:
 	MENU();
 	void Main_menu();

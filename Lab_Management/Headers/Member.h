@@ -1,16 +1,19 @@
 #pragma once
 #include"Lib.h"
 class Member {
-private:
+protected:
 	std::string name;
-	std::string ID_number;
-	std::string Class;
 	std::string email;
-	std::string phonenumber;
+	unsigned long phonenumber;
+	unsigned long ID_Number;
+	bool status;
 public:
-	Member();
-	void add_member(std::string name, std::string ID_number, std::string Class, std::string email, std::string phonenumber);
-	void delete_member();
-	void Update();
-	void print_member_info();
+	Member() {};
+	virtual ~Member() {};
+	virtual void Add_a_Member() {};
+	virtual void print_info() {};
+	virtual void borrow() {};
+	virtual void update() {};
+	virtual void delete_member() {};
 };
+

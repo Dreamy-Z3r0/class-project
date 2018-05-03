@@ -27,6 +27,12 @@
     <ClInclude Include="Headers\Lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Lecturers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Students.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\main.cpp">
@@ -35,10 +41,10 @@
     <ClCompile Include="Src\Equipment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Member.cpp">
+    <ClCompile Include="Src\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Menu.cpp">
+    <ClCompile Include="Src\Lectures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

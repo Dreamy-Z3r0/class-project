@@ -1,0 +1,9 @@
+﻿  Equipment.cpp
+  Lectures.cpp
+  Menu.cpp
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(129): warning C4102: 'input_case': unreferenced label
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(155): warning C4102: 'input_case': unreferenced label
+  main.cpp
+  Generating Code...
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(185): warning C4715: 'MENU::yes_no_option': not all control paths return a value
+  Lab_Management.vcxproj -> E:\Github_Stuffs\class-project\x64\Debug\Lab_Management.exe

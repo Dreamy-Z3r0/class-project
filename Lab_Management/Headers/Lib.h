@@ -5,4 +5,5 @@
 
 #include"Equipment.h"
 #include"Member.h"
+#include"Lecturers.h"
 //#include"Menu.h"

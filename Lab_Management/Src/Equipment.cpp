@@ -26,5 +26,5 @@ void Equipment::search()
 
 void Equipment::print_equip_info()
 {
-	std::cout << this->label << "\t\t" << this->model << "\t\t" << this->number << "\t\t" << this->price << std::endl;
+	//std::cout << this->label << "\t\t" << this->model << "\t\t" << this->number << "\t\t" << this->price << std::endl;
 }
