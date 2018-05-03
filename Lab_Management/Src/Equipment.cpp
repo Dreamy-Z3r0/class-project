@@ -4,10 +4,9 @@ Equipment::Equipment()
 {
 }
 
-void Equipment::add_equipment(std::string label, std::string model, int quantity, float price)
+void Equipment::add_equipment(std::string label, int quantity, float price)
 {
 	this->label = label;
-	this->model = model;
 	this->quantity = quantity;
 	this->price = price;
 }
