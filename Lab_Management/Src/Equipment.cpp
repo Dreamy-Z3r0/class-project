@@ -2,18 +2,24 @@
 
 Equipment::Equipment()
 {
+	label = "N/A";
+	quantity = 1;
+	price = 1000;
 }
 
-void Equipment::add_equipment(std::string label, int quantity, float price)
+Equipment::Equipment(std::string label, int quantity, float price)
 {
 	this->label = label;
 	this->quantity = quantity;
 	this->price = price;
 }
 
-void Equipment::delete_equipment()
-{
+Equipment::~Equipment()
 
+void Equipment::modifier(std::string label, int quantity_change = 0)
+{
+	this->label = label;
+	quantity += quantity_change;
 }
 
 void Equipment::update()
