@@ -16,3 +16,7 @@ public:
 	void search();
 	void print_equip_info();
 };
+
+
+//Ahihi check update
+//Check 1 2 3
