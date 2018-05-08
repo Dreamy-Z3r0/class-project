@@ -89,6 +89,32 @@ void MENU::add_equipment()
 
 void MENU::add_member()
 {
+	int choice;
+	std::cout << "1. Adding Lectures" << std::endl;
+	std::cout << "2. Adding Students" << std::endl;
+	switch (choice)
+	{
+	case 1: 
+	{
+		this->add_lectures(); 
+		break; 
+	}
+	case 2: 
+	{
+		this->add_students(); 
+		break; 
+	}
+	default:
+		std::cout << "Invalid Input" << std::endl;
+		this->add_member();
+		break;
+	}
+	
+}
+
+
+void MENU::add_lectures()
+{
 	std::string name, email;
 	unsigned long phonenumber, ID_number;
 	while (cont) {

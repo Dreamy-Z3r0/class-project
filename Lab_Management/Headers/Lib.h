@@ -6,4 +6,5 @@
 #include"Equipment.h"
 #include"Member.h"
 #include"Lecturers.h"
+#include"Students.h"
 //#include"Menu.h"
