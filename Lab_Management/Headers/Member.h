@@ -10,7 +10,7 @@ protected:
 public:
 	Member() {};
 	virtual ~Member() {};
-	virtual void Add_a_Member() {};
+	virtual void Add_a_Member(std::string Name, std::string Email, unsigned long ID_Number, unsigned long phonenumber) {};
 	virtual void print_info() {};
 	virtual void borrow() {};
 	virtual void update() {};
