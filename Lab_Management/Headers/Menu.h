@@ -11,17 +11,19 @@ private:
 	bool cont = true;
 	Equipment* Equip_list = new Equipment[equip_arr_len];
 	
-	Lectures* Lec_list = new Lectures[lec_arr_len];
-	Students* Std_list = new Students[]
+
+	std::vector<Lectures> Lec_list;
+	std::vector<Students> Stu_list;
+
 	
 public:
 	MENU();
 	void Main_menu();
 	void add_equipment();
-	void add_member();
-	void add_lectures();
-	void add_students();
+	template <class T> 
+	void add_member(std::vector<T>& Mem_list);
 	void print_equip_list();
-	void print_member_list();
+	template <class T>
+	void print_member_list(const std::vector<T>& Mem_list);
 	bool yes_no_option();
 };

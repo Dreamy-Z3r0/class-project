@@ -5,8 +5,8 @@ class Students :public Member
 {
 public:
 	Students() {};
-	void Add_a_Member(std::string Name, std::string Email, unsigned long ID_Number, unsigned long phonenumber) override;
-	void print_info() override;
+	Students(std::string Name, std::string email, std::string ID_Number, std::string phonenumber);
+	void print_info() const override;
 	void borrow() override;
 	void update() override;
 	void delete_member() override;

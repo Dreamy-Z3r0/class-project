@@ -1,7 +1,7 @@
 #include"../Headers/Lib.h"
 #include"../Headers/Lecturers.h"
 
-void Lectures::Add_a_Member(std::string Name, std::string Email, unsigned long ID_Number, unsigned long phonenumber) 
+Lectures::Lectures(std::string Name, std::string Email, std::string ID_Number, std::string phonenumber)
 {
 	this->name = Name;
 	this->email = Email;
@@ -9,7 +9,7 @@ void Lectures::Add_a_Member(std::string Name, std::string Email, unsigned long I
 	this->phonenumber = phonenumber;
 }
 
-void Lectures::print_info()
+void Lectures::print_info() const
 {
 	std::cout << this->name << "\t\t" << this->email << "\t\t" << this->ID_Number << "\t\t" << this->phonenumber << std::endl;
 }

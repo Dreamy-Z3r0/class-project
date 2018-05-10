@@ -11,36 +11,125 @@ Main_Screen:
 	cont = true;
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "\tMenu" << std::endl;
-	std::cout << "1: Add new equipment" << std::endl;
-	std::cout << "2: Add new member" << std::endl;
-	std::cout << "3: Print Equipment List" << std::endl;
-	std::cout << "4: Print Member List" << std::endl;
-	std::cout << "Enter your choice [1-7]" << std::endl;
+	std::cout << "1: Students" << std::endl;
+	std::cout << "2: Lectures" << std::endl;
+	std::cout << "2: Lab Equipment" << std::endl;
+	std::cout << "3: Courses/Project" << std::endl;
+	std::cout << "4: Print Info" << std::endl;
+	std::cout << "Enter your choice [1-4]" << std::endl;
 	std::cin >> this->choice;
-	std::cout << this->choice;
 	
 	switch (this->choice)
 	{
-		std::cout << "choosing" << std::endl;
+		
 	case 1:
-	{
-		std::cout << "debug_case" << std::endl;
-		this->add_equipment();
+	{	
+		int sub_choice;
+		std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
+		std::cout << "Submenu: Students" << std::endl;
+		std::cout << "1: Add Students" << std::endl;
+		std::cout << "2: Change Student Info" << std::endl;
+		std::cout << "3: Print Student List" << std::endl;
+		std::cout << "4: Find Student" << std::endl;
+		std::cout << "5: Remove Student info" << std::endl;
+		std::cout << "6: Back" << std::endl;
+		std::cout << "Enter your choice [1-6]" << std::endl;
+		switch (sub_choice)
+		{
+		case 1: {break; }
+		case 2: {break; }
+		case 3: {break; }
+		case 4: {break; }
+		case 5: {break; }
+		case 6: {break; }
+		default: {}
+		}
 		break;
 	}
 	case 2:
 	{
-		this->add_member();
+		int sub_choice;
+		std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
+		std::cout << "Submenu: Lectures" << std::endl;
+		std::cout << "1: Add Lectures" << std::endl;
+		std::cout << "2: Change Lecture Info" << std::endl;
+		std::cout << "3: Print Lecture List" << std::endl;
+		std::cout << "4: Find Lecture" << std::endl;
+		std::cout << "5: Remove Lecture info" << std::endl;
+		std::cout << "6: Back" << std::endl;
+		std::cout << "Enter your choice [1-6]" << std::endl;
+		switch (sub_choice)
+		{
+		case 1: {break; }
+		case 2: {break; }
+		case 3: {break; }
+		case 4: {break; }
+		case 5: {break; }
+		case 6: {break; }
+		default: {}
+		}
 		break;
 	}
 	case 3: 
 	{
-		this->print_equip_list();
+		int sub_choice;
+		std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
+		std::cout << "Submenu: Lab Equipment" << std::endl;
+		std::cout << "1: In-lab Equipment" << std::endl;
+		std::cout << "2: Add Equipment" << std::endl;
+		std::cout << "3: Check-out" << std::endl;
+		std::cout << "4: Return" << std::endl;
+		std::cout << "5: Back" << std::endl;
+		std::cout << "Enter your choice [1-5]" << std::endl;
+		switch (sub_choice)
+		{
+		case 1: {break; }
+		case 2: {break; }
+		case 3: {break; }
+		case 4: {break; }
+		case 5: {break; }
+		default: {}
+		}
 		break;
 	}
 	case 4:
 	{
-		this->print_member_list();
+		int sub_choice;
+		std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
+		std::cout << "Submenu: Project/Courses" << std::endl;
+		std::cout << "1: Available Courses/Project" << std::endl;
+		std::cout << "2: New Course/Project" << std::endl;
+		std::cout << "Enter your choice [1 or 2]" << std::endl;
+		switch (sub_choice)
+		{
+		case 1: 
+		{
+			int sub_sub_choice;
+			std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
+			std::cout << "Submenu: Project/Courses" << std::endl;
+			std::cout << "1: Enrollment" << std::endl;
+			std::cout << "2: Change Status" << std::endl;
+			std::cout << "3: Delete" << std::endl;
+			std::cout << "Enter your choice [1-3]" << std::endl;
+			switch (sub_choice)
+			{
+			case 1: {break; }
+			case 2: {break; }
+			case 3: {break; }
+			default: {}
+					 break;
+			}
+		case 2: {break; }
+		default: {}
+		}
+		break;
+	}
+	case 5:
+	{
+		std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
+		std::cout << "A student project for the final exam" << std::endl;
+		goto Main_Screen;
+		break;
 	}
 	default:
 		std::cout << "Invalid Choice!" << std::endl;
@@ -87,65 +176,30 @@ void MENU::add_equipment()
 	this->Main_menu();
 }
 
-void MENU::add_member()
-{
-	int choice;
-	std::cout << "1. Adding Lectures" << std::endl;
-	std::cout << "2. Adding Students" << std::endl;
-	switch (choice)
-	{
-	case 1: 
-	{
-		this->add_lectures(); 
-		break; 
-	}
-	case 2: 
-	{
-		this->add_students(); 
-		break; 
-	}
-	default:
-		std::cout << "Invalid Input" << std::endl;
-		this->add_member();
-		break;
-	}
-	
-}
 
 
-void MENU::add_lectures()
+template <class T>
+void MENU::add_member(std::vector<T>& Mem_list)
 {
 	std::string name, email;
-	unsigned long phonenumber, ID_number;
+	std::string phonenumber, ID_number;
 	while (cont) {
-		if (l_num >= lec_arr_len)
-		{
-			Lectures *l_temp = new Lectures[lec_arr_len + 1];
-			for (int i = 0; i < lec_arr_len; i++)
-			{
-				l_temp[i] = Lec_list[i];
-			}
-			lec_arr_len++;
-			delete[] Lec_list;
-			Lec_list = l_temp; // Copy the address of the temp array to Lec_list
-		}
 		std::cout << "Enter the name" << std::endl;
 		std::cin >> name;
-		std::cout << "Enter the age" << std::endl;
+		std::cout << "Enter the email" << std::endl;
 		std::cin >> email;
 		std::cout << "Enter the phone number" << std::endl;
 		std::cin >> phonenumber;
 		std::cout << "Enter the ID number" << std::endl;
 		std::cin >> ID_number;
-		Lec_list[l_num].Add_a_Member(name, email, phonenumber, ID_number);
-		l_num++;
+		T newmember(name, email, phonenumber, ID_number);
+		Mem_list.push_back(newmember);
+		std::cout << "Debug " << Mem_list.size() << std::endl;
 		std::cout << "Do you want to continue? [y/n]" << std::endl;
 		cont = this->yes_no_option();
-		}
+	}
 	this->Main_menu();
 }
-
-
 
 void MENU::print_equip_list()
 {
@@ -172,24 +226,25 @@ void MENU::print_equip_list()
 	}
 }
 
-
-void MENU::print_member_list()
-{
-	if (this->l_num == 0)
+template <class T>
+void MENU::print_member_list(const std::vector<T>& Mem_list)
+{	
+	unsigned int size = Mem_list.size();
+	std::cout << "Debug " << size << std::endl;
+	if (size == 0)
 	{
 		std::cout << "The Member list is currently empty" << std::endl;
-		input_case:
-		std::cout << "Do you want to add some? [Y/N]" << std::endl;
+		std::cout << "Do you want to add some? [y/n]" << std::endl;
 		cont = this->yes_no_option();
-		if (cont) this->add_equipment();
+		if (cont) this->add_member<Lectures>(Lec_list);
 		else this->Main_menu();
 	}
 	else {
 		std::cout << "Member list " << std::endl;
-		std::cout << "No\t" << "Name\t\t\t" << "age\t" << "phonenumber\t\t\t" << "ID number" << std::endl;
-		for (int i = 0; i < l_num; i++) {
+		std::cout << "No\t" << "Name\t\t\t" << "age\t\t\t" << "phonenumber\t\t\t" << "ID number" << std::endl;
+		for (unsigned int i = 0; i < size; i++) {
 			std::cout << i + 1 << "\t";
-			Lec_list[i].print_info();
+			Mem_list[i].print_info();
 		}
 		std::cout << "press 'y' to go back to the main menu" << std::endl;
 		cont = this->yes_no_option();

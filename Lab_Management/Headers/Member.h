@@ -4,16 +4,16 @@ class Member {
 protected:
 	std::string name;
 	std::string email;
-	unsigned long phonenumber;
-	unsigned long ID_Number;
+	std::string phonenumber;
+	std::string ID_Number;
 	bool status;
 public:
 	Member() {};
-	virtual ~Member() {};
+	~Member() {};
 	virtual void Add_a_Member(std::string Name, std::string Email, unsigned long ID_Number, unsigned long phonenumber) {};
-	virtual void print_info() {};
-	virtual void borrow() {};
-	virtual void update() {};
-	virtual void delete_member() {};
+	void print_info() const {};
+	void borrow() {};
+	void update() {};
+	void delete_member() {};
 };
 
