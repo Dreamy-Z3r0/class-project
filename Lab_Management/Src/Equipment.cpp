@@ -1,30 +1,48 @@
 #include"../Headers/Equipment.h"
 
-Equipment::Equipment()
+Equipment::Equipment(std::string name, int quantity = 1)
 {
-}
-
-void Equipment::add_equipment(std::string label, int quantity, float price)
-{
-	this->label = label;
+	this->name = name;
 	this->quantity = quantity;
-	this->price = price;
+	availability = quantity;
 }
 
-void Equipment::delete_equipment()
-{
+Equipment::~Equipment() {}
 
+void Equipment::set_name(std::string name)
+{
+	this->name = name;
 }
 
-void Equipment::update()
+void Equipment::quantity_change(int num)
 {
+	if (-num > quantity)
+	{
+		std::cout << "Current quantity exceeded: " << quantity << std::endl;
+	}
+	else 
+	{
+		quantity += num;
+		availability += num;
+	}
 }
 
-void Equipment::search()
+void Equipment::availability_change(int num)
 {
+	if (-num > availability)
+	{
+		std::cout << "Available to borrow: " << availability << " items.\n";
+	}
+	else 
+	{
+		availability += num;
+	}
 }
 
-void Equipment::print_equip_info()
+
+void Equipment::print_info()
 {
-	//std::cout << this->label << "\t\t" << this->model << "\t\t" << this->number << "\t\t" << this->price << std::endl;
+	std::cout << "Equipment name: " << name;
+	std::cout << "\nIn-lab quantity: " << quantity;
+	std::cout << "\nAvailable to borrow: " << availability << std::endl;
 }
