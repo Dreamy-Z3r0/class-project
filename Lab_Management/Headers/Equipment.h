@@ -3,20 +3,15 @@
 
 class Equipment {
 private:
-	std::string label;
-	std::string model;
+	std::string name;
 	int quantity;
-	float price;
+	int availability;
 
 public: 
-	Equipment();
-	void add_equipment(std::string label, int quantity, float price);
-	void delete_equipment();
-	void update();
-	void search();
-	void print_equip_info();
+	Equipment(std::string name, int quantity = 1);
+	~Equipment();
+	void set_name(std::string name);
+	void quantity_change(int num);
+	void availability_change(int num);
+	void print_info();
 };
-
-
-//Ahihi check update
-//Check 1 2 3
