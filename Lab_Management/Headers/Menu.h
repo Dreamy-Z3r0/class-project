@@ -4,7 +4,9 @@
 
 class MENU {
 private:
-	bool cont = true;	
+	bool cont = true;
+	std::size_t lec_index;
+	std::size_t stu_index;
 
 	std::vector <Lecturer> Lecturer_list;
 	std::vector <Student>  Student_list;
@@ -21,5 +23,13 @@ public:
 	void add_member(std::vector<T>& Mem_list);
 	template <class T>
 	void print_member_list(const std::vector<T>& Mem_list);
+	template<class T>
+	void find_member(std::vector<T>& Mem_list);
+	template<class T>
+	void remove_member(std::vector<T>& Mem_list);
+	template<class T>
+	void change_member_info(std::vector<T>& Mem_list);
+	template <class T>
+	std::size_t return_index(std::vector<T>& Mem_list, bool &found);
 	bool yes_no_option();
 };

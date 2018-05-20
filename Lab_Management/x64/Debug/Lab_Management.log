@@ -1,9 +1,3 @@
 ﻿  Menu.cpp
-e:\github_stuffs\class-project\lab_management\src\menu.cpp(201): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  e:\github_stuffs\class-project\lab_management\src\menu.cpp(74): note: see reference to function template instantiation 'void MENU::print_member_list<Student>(const std::vector<Student,std::allocator<_Ty>> &)' being compiled
-          with
-          [
-              _Ty=Student
-          ]
-e:\github_stuffs\class-project\lab_management\src\menu.cpp(228): warning C4715: 'MENU::yes_no_option': not all control paths return a value
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(286): warning C4715: 'MENU::yes_no_option': not all control paths return a value
   Lab_Management.vcxproj -> E:\Github_Stuffs\class-project\x64\Debug\Lab_Management.exe
