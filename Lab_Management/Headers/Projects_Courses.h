@@ -8,7 +8,7 @@ private:
 	std::string duration;
 	std::string status;
 	std::string description;
-	vector<People> attending_list;
+	std::vector<Student> attending_list;
 	
 public:
 	Projects_Courses(std::string name, std::string start_date, std::string duration, std::string status = "Ongoing", std::string description = "N/A");

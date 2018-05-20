@@ -1,13 +1,12 @@
 #pragma once
 
 #include<iostream>
-#include<string>
+#include<vector>
+#include<fstream>
 #include <ctime>
-
+#include"Student.h"
 #include"Equipment.h"
-#include"Member.h"
-#include"Lecturers.h"
-#include"Students.h"
+#include"Lecturer.h"
 
 
 //#include"Menu.h"

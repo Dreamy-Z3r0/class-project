@@ -20,17 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Equipment.h" />
-    <ClInclude Include="Headers\Students.h" />
-    <ClInclude Include="Headers\Lecturers.h" />
+    <ClInclude Include="Headers\Projects_Courses.h" />
+    <ClInclude Include="Headers\Student.h" />
+    <ClInclude Include="Headers\Lecturer.h" />
     <ClInclude Include="Headers\Lib.h" />
     <ClInclude Include="Headers\Member.h" />
     <ClInclude Include="Headers\Menu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Equipment.cpp" />
-    <ClCompile Include="Src\Lectures.cpp" />
+    <ClCompile Include="Src\Lecture.cpp" />
     <ClCompile Include="Src\main.cpp" />
     <ClCompile Include="Src\Menu.cpp" />
+    <ClCompile Include="Src\Projects_Courses.cpp" />
+    <ClCompile Include="Src\Student.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

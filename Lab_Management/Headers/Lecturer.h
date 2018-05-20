@@ -2,13 +2,12 @@
 
 #include "Lib.h"
 
-class Lectures:public Member
+class Lecturer : public Student
 {
 public:
-	Lectures() {};
-	void Add_a_Member(std::string Name, std::string Email, unsigned long ID_Number, unsigned long phonenumber) override;
-	void print_info() override;
-	void borrow() override;
-	void update() override;
-	void delete_member() override;
+	Lecturer() {};
+	Lecturer(std::string Name, std::string Email, std::string ID_Number, std::string phonenumber) {};
+	void create_course_project() {};
+	void delete_course_project() {};
+	void update_status() {};
 };
