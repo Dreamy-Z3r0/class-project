@@ -4,3 +4,11 @@
 *.opendb
 *.ipch
 *.ipch
+.vs/Lab_Management/v15/.suo
+*.ipch
+.vs/Lab_Management/v15/.suo
+*.ipch
+*.log
+*.obj
+*.ilk
+*.exe

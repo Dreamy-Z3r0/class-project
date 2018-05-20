@@ -1,6 +1,6 @@
 #include"../Headers/Equipment.h"
 
-Equipment::Equipment(std::string name, int quantity = 1)
+Equipment::Equipment(std::string name, int quantity)
 {
 	this->name = name;
 	this->quantity = quantity;
