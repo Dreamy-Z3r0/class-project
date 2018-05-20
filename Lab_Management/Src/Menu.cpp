@@ -203,7 +203,8 @@ void MENU::Courses_Project_Menu()
 template <class T>
 void MENU::add_member(std::vector<T>& Mem_list)
 {
-	std::string name, email, phonenumber, ID_number;
+	char name[50], email[50];
+	char phonenumber[10], ID_number[10];
 	while (cont) {
 		std::cout << "Enter the name" << std::endl;
 		std::cin >> name;
@@ -289,13 +290,15 @@ bool MENU::yes_no_option()
 template<class T>
 void MENU::change_member_info(std::vector<T>& Mem_list)
 {
-	std::string input;
-	bool sub_cont = true;
+	
+	char c_input[50];
+	char n_input[10];
 	while (this->cont) {
 		bool found = false;
 		std::size_t index = this->return_index<T>(Mem_list, found);
 		if (found)
 		{
+			bool sub_cont = true;
 			while (sub_cont) {
 				int choice;
 				Student_list[index].print_info();
@@ -304,26 +307,26 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 				std::cin >> choice;
 				if (choice == 1) {
 					std::cout << "Enter the name" << std::endl;
-					std::cin >> input;
-					Student_list[index].set_name(input);
+					std::cin >> c_input;
+					Student_list[index].set_name(c_input);
 				}
 				else if (choice == 2)
 				{
 					std::cout << "Enter the Email" << std::endl;
-					std::cin >> input;
-					Student_list[index].set_email(input);
+					std::cin >> c_input;
+					Student_list[index].set_email(c_input);
 				}
 				else if (choice == 3)
 				{
 					std::cout << "Enter the Telephone Number" << std::endl;
-					std::cin >> input;
-					Student_list[index].set_phonenumber(input);
+					std::cin >> n_input;
+					Student_list[index].set_phonenumber(n_input);
 				}
 				else if (choice == 4)
 				{
 					std::cout << "Enter the ID Number" << std::endl;
-					std::cin >> input;
-					Student_list[index].set_IDnumber(input);
+					std::cin >> n_input;
+					Student_list[index].set_IDnumber(n_input);
 				}
 				else std::cout << "Invalid Choice!" << std::endl;
 				std::cout << "Do you want to change other information? [y/n]" << std::endl;
@@ -334,6 +337,7 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 		std::cout << "Do you want to change other member infomation? [y/n]" << std::endl;
 		this->cont = this->yes_no_option();
 	}
+	
 }
 
 template<class T>

@@ -1,0 +1,17 @@
+
+.vs/Lab_Management/v15/Browse.VC.db
+.vs/Lab_Management/v15/.suo
+.vs/Lab_Management/v15/.suo
+.vs/Lab_Management/v15/Browse.VC.opendb
+.vs/Lab_Management/v15/ipch/AutoPCH/64752f22dab2923d/MENU.ipch
+.vs/Lab_Management/v15/ipch/AutoPCH/e60743ffe6115ba4/EQUIPMENT.ipch
+*.ipch
+*.obj
+*.obj
+*.log
+Lab_Management/x64/Debug/Lab_Management.tlog/unsuccessfulbuild
+*.exe
+x64/Debug/Lab_Management.exe
+x64/Debug/Lab_Management.ilk
+x64/Debug/Lab_Management.pdb
+*.enc

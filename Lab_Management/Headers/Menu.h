@@ -1,7 +1,6 @@
 #pragma once
 #include"Lib.h"
 
-
 class MENU {
 private:
 	bool cont = true;
@@ -10,7 +9,8 @@ private:
 
 	std::vector <Lecturer> Lecturer_list;
 	std::vector <Student>  Student_list;
-
+	
+	ifstream student_file;
 	
 public:
 	MENU();

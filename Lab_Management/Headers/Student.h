@@ -2,22 +2,22 @@
 #include"Lib.h"
 class Student {
 protected:
-	std::string name;
-	std::string email;
-	std::string phonenumber;
-	std::string ID_Number;
+	char name[50];
+	char email[50];
+	char phonenumber[10];
+	char ID_Number[10];
 public:
 	Student() {};
-	Student(std::string Name, std::string email, std::string phonenumber, std::string ID_Number );
+	Student(char* Name, char* email, char* phonenumber, char* ID_Number );
 	~Student() {};
-	void set_name(std::string name);
-	void set_email(std::string email);
-	void set_phonenumber(std::string phonenumber);
-	void set_IDnumber(std::string ID_Number);
-	std::string get_name();
-	std::string get_email();
-	std::string get_phonenumber();
-	std::string get_IDnumber();
+	void set_name(char* name);
+	void set_email(char*email);
+	void set_phonenumber(char* phonenumber);
+	void set_IDnumber(char* ID_Number);
+	char* get_name();
+	char* get_email();
+	char* get_phonenumber();
+	char* get_IDnumber();
 	void print_info() const;
 	void check_out() {};
 	void return_object() {};

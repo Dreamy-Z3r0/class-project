@@ -1,3 +1,9 @@
-﻿  Menu.cpp
-e:\github_stuffs\class-project\lab_management\src\menu.cpp(286): warning C4715: 'MENU::yes_no_option': not all control paths return a value
-  Lab_Management.vcxproj -> E:\Github_Stuffs\class-project\x64\Debug\Lab_Management.exe
+﻿  Equipment.cpp
+  Menu.cpp
+e:\github_stuffs\class-project\lab_management\headers\menu.h(14): error C3646: 'student_file': unknown override specifier
+e:\github_stuffs\class-project\lab_management\headers\menu.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  Student.cpp
+  main.cpp
+e:\github_stuffs\class-project\lab_management\headers\menu.h(14): error C3646: 'student_file': unknown override specifier
+e:\github_stuffs\class-project\lab_management\headers\menu.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  Generating Code...
