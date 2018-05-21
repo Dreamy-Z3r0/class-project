@@ -2,6 +2,7 @@
 
 MENU::MENU()
 {
+	this->load_file<Student>("Resources/Student_List.dat", Student_list);
 
 }
 
@@ -54,6 +55,7 @@ void MENU::Student_Menu()
 {
 	this->cont = true;
 	int sub_choice;
+	this->save_file<Student>("Resources/Student_List.dat", Student_list);
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "Submenu: Students" << std::endl;
 	std::cout << "1: Add Students" << std::endl;
@@ -374,4 +376,62 @@ void MENU::remove_member(std::vector<T>& Mem_list)
 		std::cout << "Do you want to continue? [y/n]" << std::endl;
 		this->cont = this->yes_no_option();
 	}
+}
+
+
+template<class T>
+void MENU::save_file(std::string file_name, std::vector<T>& Mem_list)
+{
+	std::size_t size = Mem_list.size();
+	std::fstream file;
+	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::binary);
+	
+	if (file.is_open()) {
+		file.seekp(0, std::ios::end);
+		for (std::size_t i = 0; i < size; i++)
+		{
+			std::cout << "Check_Save_loop" << std::endl;
+			file.seekp(0, std::ios::end);
+			file.write((char*)&Mem_list[i], sizeof(T));
+		}
+		file.close();
+	}
+	else std::cout << "Error Opening the file" << std::endl;
+}
+
+template<class T>
+void MENU::load_file(std::string file_name, std::vector<T>& Mem_list)
+{	
+	T check;
+	std::cout << "size of a class" << sizeof(T) << std::endl;
+	std::size_t size = Mem_list.size();
+	std::fstream file;
+	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::binary);
+	
+	if (file.is_open()) {
+		
+		file.seekg(0, std::ios::end);     //move to the end of the file
+		std::streamoff end_point = file.tellg();		  // The position of pointer
+		std::cout << "The pointer at the end " << end_point << std::endl;
+		std::streamoff size_of_file = end_point / sizeof(T);
+		file.seekg(0, std::ios::beg);     //move to the beg of the file
+		std::cout << "There are " << size_of_file << " (s) in this database ";
+		
+		std::streamoff fl_sz = file.tellg();
+		std::cout << "The pointer is firstly " << fl_sz << std::endl;
+		//while(!file.eof())
+		//while(file.getline(check,10))
+		//while (file.read((char*)&Mem_list, sizeof(T)));
+		for(std::streamoff i = 0; i < size_of_file; i++)
+		{
+			std::streamoff fl_sz = file.tellg();
+			std::cout << "The pointer is" << fl_sz << std::endl;
+			file.read((char*)&check, sizeof(T));
+			Mem_list.push_back(check);
+			Mem_list[i].print_info();
+		}
+		
+
+	}
+	else std::cout << "Error Opening the file" << std::endl;
 }

@@ -9,8 +9,7 @@ private:
 
 	std::vector <Lecturer> Lecturer_list;
 	std::vector <Student>  Student_list;
-
-	///ifstream student_file;
+	std::vector <Student>  temp;
 
 public:
 	MENU();
@@ -32,4 +31,8 @@ public:
 	template <class T>
 	std::size_t return_index(std::vector<T>& Mem_list, bool &found);
 	bool yes_no_option();
+	template <class T>
+	void save_file(std::string file_name,  std::vector<T>& Mem_list);
+	template <class T>
+	void load_file(std::string file_name, std::vector<T>& Mem_list);
 };

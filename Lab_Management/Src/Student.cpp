@@ -29,5 +29,6 @@ char* Student::get_IDnumber() { return this->ID_Number; }
 
 void Student::print_info() const
 {
-	std::cout << this->name << "\t\t\t" << this->email << "\t\t\t" << this->phonenumber << "\t\t\t" << this->ID_Number << std::endl;
+	//std::cout << this->name << "\t\t\t" << this->email << "\t\t\t" << this->phonenumber << "\t\t\t" << this->ID_Number << std::endl;
+	std::cout << this->name << "\n" << this->email << "\n" << this->phonenumber << "\n" << this->ID_Number << std::endl;
 }
