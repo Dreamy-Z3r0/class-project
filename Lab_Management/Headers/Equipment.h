@@ -3,15 +3,18 @@
 
 class Equipment {
 private:
-	std::string name;
+	char name[50];
 	int quantity;
 	int availability;
 
 public: 
-	Equipment(std::string name, int quantity = 1);
+	Equipment() {};
+	Equipment(char* name, int quantity = 1);
 	~Equipment();
-	void set_name(std::string name);
+	char* get_name();
+	int get_availability();
+	void set_name(char* name);
 	void quantity_change(int num);
 	void availability_change(int num);
-	void print_info();
+	void print_info() const;
 };

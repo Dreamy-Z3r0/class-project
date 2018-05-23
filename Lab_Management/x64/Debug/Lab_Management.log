@@ -1,3 +1,4 @@
 ﻿  Menu.cpp
-e:\github_stuffs\class-project\lab_management\src\menu.cpp(289): warning C4715: 'MENU::yes_no_option': not all control paths return a value
+e:\github_stuffs\class-project\lab_management\headers\student.h(8): warning C4129: 'A': unrecognized character escape sequence
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(314): warning C4715: 'MENU::yes_no_option': not all control paths return a value
   Lab_Management.vcxproj -> E:\Github_Stuffs\class-project\x64\Debug\Lab_Management.exe

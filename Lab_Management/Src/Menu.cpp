@@ -3,6 +3,10 @@
 MENU::MENU()
 {
 	this->load_file<Student>("Resources/Student_List.dat", Student_list);
+	this->load_file<Lecturer>("Resources/Lecturer_List.dat", Lecturer_list);
+	this->load_file<Equipment>("Resources/Equipment_List.dat", Equipment_list);
+	this->load_file<Projects_Courses>("Resources/Project_Course_List.dat", Project_Course_List);
+
 
 }
 
@@ -99,6 +103,7 @@ void MENU::Student_Menu()
 
 void MENU::Lecture_Menu()
 {
+	this->save_file<Lecturer>("Resources/Lecturer_List.dat", Lecturer_list);
 	this->cont = true;
 	int sub_choice;
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
@@ -108,7 +113,7 @@ void MENU::Lecture_Menu()
 	std::cout << "3: Print Lecturer List" << std::endl;
 	std::cout << "4: Find Lecturer" << std::endl;
 	std::cout << "5: Remove Lecturer info" << std::endl;
-	std::cout << "6: Print Lecturer List" << std::endl;
+	std::cout << "6: Print Lecturer List {temp back}" << std::endl;
 	std::cout << "7: Find Lecturer" << std::endl;
 	std::cout << "8: Remove Lecturer info" << std::endl;
 	std::cout << "9: Back" << std::endl;
@@ -118,31 +123,37 @@ void MENU::Lecture_Menu()
 	{
 	case 1: {
 		this->add_member<Lecturer>(Lecturer_list);
+		this->Lecture_Menu();
 		break;
 	}
 	case 2: {
 		this->change_member_info<Lecturer>(Lecturer_list);
-		this->Student_Menu();
+		this->Lecture_Menu();
 		break; }
 	case 3: {
 		this->print_member_list<Lecturer>(Lecturer_list);
+		this->Lecture_Menu();
+
 		break;
 	}
 	case 4: {
 		this->find_member<Lecturer>(Lecturer_list);
-		this->Student_Menu();
+		this->Lecture_Menu();
 		break; }
 	case 5: {
 		this->remove_member<Lecturer>(Lecturer_list);
-		this->Student_Menu();
+		this->Lecture_Menu();
 		break; }
-	case 6: {break; }
+	case 6: {
+		this->Main_menu();
+		break; }
 	default: {}
 	}
 }
 
 void MENU::Equipment_Menu()
-{
+{	
+	this->save_file<Equipment>("Resources/Equipment_List.dat", Equipment_list);
 	this->cont = true;
 	int sub_choice;
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
@@ -156,11 +167,22 @@ void MENU::Equipment_Menu()
 	std::cin >> sub_choice;
 	switch (sub_choice)
 	{
-	case 1: {break; }
-	case 2: {break; }
-	case 3: {break; }
+	case 1: {
+		this->print_equipment_info();
+		this->Equipment_Menu();
+		break; }
+	case 2: {
+		this->add_equipment();
+		this->Equipment_Menu();
+		break; }
+	case 3: {
+		this->check_out<Student>(Student_list);
+		this->Equipment_Menu();
+		break; }
 	case 4: {break; }
-	case 5: {break; }
+	case 5: {
+		this->Main_menu();
+		break; }
 	default: {}
 	}
 }
@@ -233,8 +255,10 @@ void MENU::add_member(std::vector<T>& Mem_list)
 
 
 
+
+
 template <class T>
-void MENU::print_member_list(const std::vector<T>& Mem_list)
+void MENU::print_member_list(std::vector<T>& Mem_list)
 {
 	std::size_t size = Mem_list.size();
 	std::cout << "The list " << std::endl;
@@ -253,10 +277,11 @@ void MENU::print_member_list(const std::vector<T>& Mem_list)
 }
 
 template<class T>
-std::size_t MENU::return_index(std::vector<T>& Mem_list, bool &found)
+std::size_t MENU::return_mem_index(std::vector<T>& Mem_list, bool &found)
 {
 	std::string ID_num;
-	std::size_t found_index = 0;
+	std::size_t found_index = 0;\
+
 	std::size_t size = Mem_list.size();
 	std::cout << "Enter the ID number" << std::endl;
 	std::cin >> ID_num;
@@ -297,7 +322,7 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 	char n_input[10];
 	while (this->cont) {
 		bool found = false;
-		std::size_t index = this->return_index<T>(Mem_list, found);
+		std::size_t index = this->return_mem_index<T>(Mem_list, found);
 		if (found)
 		{
 			bool sub_cont = true;
@@ -347,7 +372,7 @@ void MENU::find_member(std::vector<T>& Mem_list)
 {
 	while (this->cont) {
 		bool found = false;
-		std::size_t index = this->return_index<T>(Mem_list, found);
+		std::size_t index = this->return_mem_index<T>(Mem_list, found);
 		if (found) Student_list[index].print_info();
 		else std::cout << "No member found" << std::endl;
 		std::cout << "Do you want to continue? [y/n]" << std::endl;
@@ -360,16 +385,16 @@ void MENU::remove_member(std::vector<T>& Mem_list)
 {
 	while (this->cont) {
 		bool found = false;
-		std::size_t index = this->return_index<T>(Mem_list, found);
+		std::size_t index = this->return_mem_index<T>(Mem_list, found);
 		if (found)
 		{
 			bool choice;
 			Student_list[index].print_info();
-			std::cout << "do you want to delete this student? [y/n]" << std::endl;
+			std::cout << "do you want to delete this member? [y/n]" << std::endl;
 			choice = this->yes_no_option();
 			if (choice) {
 				Student_list.erase(Student_list.begin() + index);
-				std::cout << "Student Info is deleted!" << std::endl;
+				std::cout << "Member Info is deleted!" << std::endl;
 			}
 		}
 		else std::cout << "No member found" << std::endl;
@@ -379,12 +404,197 @@ void MENU::remove_member(std::vector<T>& Mem_list)
 }
 
 
+void MENU::add_equipment()
+{
+	char name[50];
+	int quantity;
+	while (cont) {
+		std::cout << "Enter equipment name" << std::endl;
+		std::cin >> name;
+		std::cout << "Enter the quantity" << std::endl;
+		std::cin >> quantity;
+		Equipment new_equip(name, quantity);
+		Equipment_list.push_back(new_equip);
+		std::cout << "Debug " << Equipment_list.size() << std::endl;
+		std::cout << "Do you want to continue? [y/n]" << std::endl;
+		cont = this->yes_no_option();
+	}
+	/*
+	if (std::is_same<T, Student>::value) this->Student_Menu();
+	else this->Lecture_Menu();
+	*/
+}
+
+
+void MENU::print_equipment_info()
+{
+	std::size_t size = Equipment_list.size();
+	std::cout << "The list " << std::endl;
+	std::cout << "No: ";
+	for (unsigned int i = 0; i < size; i++) {
+		std::cout << i + 1 << "\n";
+		Equipment_list[i].print_info();
+	}
+	std::cout << "press 'y' to go back" << std::endl;
+	this->cont = this->yes_no_option();
+}
+
+
+template <class T>
+std::size_t MENU::return_obj_index(std::vector<T>& Obj_list, bool &found)
+{
+	char name[50];
+	std::size_t found_index = 0;
+	std::size_t size = Obj_list.size();
+	std::cout << "Enter the name" << std::endl;
+	std::cin >> name;
+	for (std::size_t i = 0; i < size; i++)
+	{
+		std::cout << "Obj_list value" << Obj_list[i].get_name() << std::endl;
+		std::cout << "Input Name" << name << std::endl;
+		if (strcmp(name, Obj_list[i].get_name()) == 0)
+		{
+			found_index = i;
+			std::cout << "found!" << std::endl;
+			found = true;
+		}
+	}
+	std::cout << "Index value " << found_index << std::endl;
+	return found_index;
+}
+
+template<class T>
+void MENU::check_out(std::vector<T>& Mem_list)
+{
+	while (this->cont) {
+		bool found = false;
+		std::size_t index = this->return_obj_index(Equipment_list, found);
+		if (found)
+		{
+			bool choice;
+			Equipment_list[index].print_info();
+			std::cout << "do you want to check this Equipment out? [y/n]" << std::endl;
+			choice = this->yes_no_option();
+			if (choice) {
+				bool sub_cont = true;
+				while (sub_cont)
+				{
+					bool sub_found = false;
+					std::size_t mem_index = this->return_mem_index<T>(Mem_list, sub_found);
+					Equipment_list[index].print_info();
+					if (sub_found) {
+						char date[5];
+						int borrowed = Mem_list[mem_index].occupied_vacancies();
+						int vacancy = Mem_list[mem_index].return_vacancy_index();
+						std::cout << "The Member Info is: " << std::endl;
+						Mem_list[mem_index].print_info();
+						if (borrowed >= 3) {
+							std::cout << "This student has borrowed more than 3 equipment" << std::endl;
+							std::cout << "Return one to borrow another" << std::endl;
+							break;
+						}
+						else {
+							int quantity = 0;
+							int availability = Equipment_list[index].get_availability();
+						availability_check:
+											
+							std::cout << "How many do you want to borrow? " << std::endl;
+							std::cin >> quantity;
+
+							if(quantity  > availability)
+							{
+								std::cout << "Out of stock!" << std::endl;
+								std::cout << "Only " << availability << " remained!" << std::endl;
+								std::cout << "Do you want to re-enter the quantity?" << std::endl;
+								bool re_enter = this->yes_no_option();
+								if (re_enter) goto availability_check;
+								else break;
+							}
+							else if (quantity + borrowed > 3)
+							{
+								std::cout << "Borrow: " << borrowed << std::endl;
+								std::cout << "Borrow and quantity: " << borrowed + quantity << std::endl;
+								std::cout << "Your quantity exceeds the limit! (Only 3 Equipment for each Person!) " << std::endl;
+								std::cout << "Do you want to re-enter the quantity?" << std::endl;
+								bool re_enter = this->yes_no_option();
+								if (re_enter) goto availability_check;
+								else break;
+							}
+							else {
+								std::cout << "Enter date" << std::endl;
+								std::cin >> date;
+								std::cout << "Borrow successfully!" << std::endl;
+								Mem_list[mem_index].set_borrow_list(Equipment_list[index].get_name(), vacancy, quantity, date);
+								Equipment_list[index].availability_change(-quantity);
+								break;
+							}
+						}
+					}
+					else std::cout << "No Member found! Please enter again!" << std::endl;
+				}
+			}
+			else break;
+		}
+		else std::cout << "No Equipment found" << std::endl;
+		std::cout << "Do you want to continue? [y/n]" << std::endl;
+		this->cont = this->yes_no_option();
+	}
+}
+
+
+
+template<class T>
+void MENU::return_equip(std::vector<T>& Mem_list)
+{
+	while (this->cont) {
+		bool found = false;
+		std::size_t index = this->return_mem_index(Mem_list, found);
+		if (found)
+		{
+			bool choice;
+			Mem_list[index].print_info();
+			bool sub_cont = true;
+			while (sub_cont)
+			{
+				bool sub_found = false;
+				std::size_t equip_index = this->return_obj_index<T>(Equipment_list, sub_found);
+				Equipment_list[index].print_info();
+				if (sub_found) {
+
+					int vacancy = Mem_list[mem_index].check_vacancy();
+					std::cout << "The Member Info is: " << std::endl;
+					Mem_list[mem_index].print_info();
+					if (vacancy == -1) {
+						std::cout << "This student has borrowed more than 3 equipments" << std::endl;
+						std::cout << "Return one to borrow another" << std::endl;
+						break;
+					}
+					else {
+						std::cout << "Borrow successfully!" << std::endl;
+						Mem_list[mem_index].set_borrow_list(Equipment_list[index].get_name(), vacancy);
+						break;
+					}
+				}
+				else std::cout << "No member found! Please Enter Again"
+			}
+			
+		}
+		else std::cout << "No Equipment found" << std::endl;
+		std::cout << "Do you want to continue? [y/n]" << std::endl;
+		this->cont = this->yes_no_option();
+	}
+}
+
+
+
+
+
 template<class T>
 void MENU::save_file(std::string file_name, std::vector<T>& Mem_list)
 {
 	std::size_t size = Mem_list.size();
 	std::fstream file;
-	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::binary);
+	file.open(file_name, std::fstream::in | std::fstream::out |std::fstream::trunc| std::fstream::binary);
 	
 	if (file.is_open()) {
 		file.seekp(0, std::ios::end);
@@ -430,8 +640,6 @@ void MENU::load_file(std::string file_name, std::vector<T>& Mem_list)
 			Mem_list.push_back(check);
 			Mem_list[i].print_info();
 		}
-		
-
 	}
 	else std::cout << "Error Opening the file" << std::endl;
 }

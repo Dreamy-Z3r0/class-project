@@ -1,19 +1,23 @@
 #include"../Headers/Projects_Courses.h"
 
-Projects_Courses::Projects_Courses(std::string name, std::string start_date, std::string duration, std::string status, std::string description)
+Projects_Courses::Projects_Courses(char* name, char* start_date, char* duration, const char* status, const char* description)
 {
-	this->name = name;
-	this->start_date = start_date;
-	this->duration = duration;
-	this->status = status;
-	this->description = description;
+	strcpy_s(this->name,50, name);
+	strcpy_s(this->start_date,10, start_date);
+	strcpy_s(this->duration,10, duration);
+	strcpy_s(this->status, 10, status);
+	strcpy_s(this->description,100, description);
 }
 
 Projects_Courses::~Projects_Courses() {}
-
-void Projects_Courses::change_status(std::string status)
+char* Projects_Courses::get_name()
 {
-	this->status = status;
+	return this->name;
+}
+
+void Projects_Courses::change_status(char* status)
+{
+	strcpy_s(this->status, 10, status);
 }
 
 void Projects_Courses::print_info()
