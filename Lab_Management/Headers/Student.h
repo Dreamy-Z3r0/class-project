@@ -5,14 +5,14 @@ struct borrowthings
 	bool vacancy = true;
 	char name[50] = "None";
 	int quantity = 0;
-	char date[5] = "N\A";
+	char date[5] = "N/A";
 };
 
 class Student {
 protected:
 	char name[50];
 	char email[50];
-	char phonenumber[10];
+	char phonenumber[20];
 	char ID_Number[10];
 
 	borrowthings list[3];
@@ -41,11 +41,14 @@ public:
 	char* get_email();
 	char* get_phonenumber();
 	char* get_IDnumber();
-	
-
+	char* get_equip_name(int index);
+	int get_equip_quantity(int index);
 
 	int return_vacancy_index();
 	int occupied_vacancies();
+	void return_all_equipments(int vacancy);
+
+
 	void borrow_things() {};
 	void return_things() {};
 	void print_info();

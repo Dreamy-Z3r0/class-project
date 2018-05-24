@@ -51,4 +51,6 @@ void Equipment::print_info() const
 	std::cout << "Equipment name: " << name;
 	std::cout << "\nIn-lab quantity: " << quantity;
 	std::cout << "\nAvailable to borrow: " << availability << std::endl;
+	std::cout << " " << std::endl;
+
 }
