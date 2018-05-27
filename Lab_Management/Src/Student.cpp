@@ -58,9 +58,10 @@ char* Student::get_IDnumber()							{ return this->ID_Number; }
  *@return void
  */
 
-void Student::set_borrow_list(char* equip_name, int index, int quantity, char* date)
+void Student::set_borrow_list(char* equip_name, char* ID_number, int index, int quantity, char* date)
 {
 	strcpy_s(this->list[index].name, 50, equip_name);
+	strcpy_s(this->list[index].ID_number, 10, ID_number);
 	this->list[index].vacancy = false;
 	this->list[index].quantity = quantity;
 	strcpy_s(this->list[index].date, 5, date);
@@ -75,6 +76,7 @@ void Student::set_borrow_list(char* equip_name, int index, int quantity, char* d
 void Student::return_all_equipments(int vacancy)
 {
 	strcpy_s(this->list[vacancy].name, 50, "none");
+	strcpy_s(this->list[vacancy].ID_number, 10, "none");
 	this->list[vacancy].vacancy = true;
 	this->list[vacancy].quantity = 0;
 	strcpy_s(this->list[vacancy].date, 5, "N/A");
@@ -86,7 +88,7 @@ void Student::return_all_equipments(int vacancy)
  *@return int
  */
 
-int  Student::occupied_vacancies()
+int  Student::return_occupied_vacancies() 
 {	
 	int occuppied = 0;
 	int un_occupied = 0;
@@ -110,7 +112,6 @@ int  Student::occupied_vacancies()
 
 int Student::return_vacancy_index()
 {
-
 	for (int i = 0; i < 3; i++)
 	{
 		if (this->list[i].vacancy == true)
@@ -128,9 +129,9 @@ int Student::return_vacancy_index()
  *@return char*
  */
 
-char* Student::get_equip_name(int index) 
+char* Student::get_equip_IDnumber(int index)
 {
-	return this->list[index].name;
+	return this->list[index].ID_number;
 }
 
 /**
@@ -143,8 +144,6 @@ int Student::get_equip_quantity(int index)
 {
 	return this->list[index].quantity;
 }
-
-
 
 
 /*******************************************************************
@@ -169,26 +168,30 @@ void Student::print_info()
 	for (int i = 0; i < 3; i++)
 	{
 		if (!this->list[i].vacancy)
-			std::cout << "Equipment borrowed THE FUCKING POWER: " << this->list[i].name << "\t" << "Quantity: " << this->list[i].quantity << std::endl;
+			std::cout << "Equipment borrowed: " << this->list[i].name << "\t" << "Quantity: " << this->list[i].quantity 
+			<< "\t" << "ID Number: " << this->list[i].ID_number<<std::endl;
+	}
+	for (int i = 0; i < 2; i++)
+	{	
+		if (!this->involved_project[i].vacancy)
+			std::cout << "Project involved: " << this->involved_project[i].name << "\n" << "ID Number: " << this->list[i].ID_number << std::endl;
 	}
 	std::cout << " " << std::endl;
-/*
-	if (vacancy_index == -1)
+}
+
+
+
+int Student::return_project_vacancy_index()
+{
+	for (int i = 0; i < 2; i++)
 	{
-		std::cout << "list full" << std::endl;
-		for (int i = 0; i < 3; i++)
-		{
-			if (!this->list[i].vacancy)
-			std::cout << "Equipment borrowed: " << this->list[i].name << "\t" << "Quantity: " << this->list[i].quantity << std::endl;
-		}
+		if (involved_project[i].vacancy == true) return i;
 	}
-	else {
-		for (int i = 0; i < vacancy_index; i++)
-		{
-			std::cout << "Equipment borrowed: " << this->list[i].name <<"\t" << "Quantity: " << this->list[i].quantity
-				<< "\t" << "Date: "<< this->list[i].date  << std::endl;
-		}
-	}
-	this->occupied_vacancies();
-*/
+	return -1;
+}
+
+void Student::set_project_list(char* project_name, int vacancy_index)
+{
+	strcpy_s(this->involved_project[vacancy_index].name, 50, project_name);
+	this->involved_project[vacancy_index].vacancy = false;
 }

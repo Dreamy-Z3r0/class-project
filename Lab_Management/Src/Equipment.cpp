@@ -1,8 +1,9 @@
 #include"../Headers/Equipment.h"
 
-Equipment::Equipment(char* name, int quantity)
+Equipment::Equipment(char* name, char* ID_number, int quantity)
 {
-	strcpy_s(this->name, 40, name);
+	strcpy_s(this->name, 50, name);
+	strcpy_s(this->ID_number, 10, ID_number);
 	this->quantity = quantity;
 	availability = quantity;
 }
@@ -12,6 +13,11 @@ Equipment::~Equipment() {}
 char* Equipment::get_name()
 {
 	return this->name;
+}
+
+char* Equipment::get_IDnumber()
+{
+	return this->ID_number;
 }
 
 void Equipment::set_name(char* name)
@@ -49,6 +55,7 @@ int Equipment::get_availability() { return this->quantity; }
 void Equipment::print_info() const
 {
 	std::cout << "Equipment name: " << name;
+	std::cout << "\nEquipment ID number" << ID_number;
 	std::cout << "\nIn-lab quantity: " << quantity;
 	std::cout << "\nAvailable to borrow: " << availability << std::endl;
 	std::cout << " " << std::endl;

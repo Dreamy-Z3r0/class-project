@@ -25,8 +25,7 @@ public:
 	
 	template <class T>
 	void add_member(std::vector<T>& Mem_list);
-	template <class T>
-	void print_member_list(std::vector<T>& Mem_list);
+
 	template<class T>
 	void find_member(std::vector<T>& Mem_list);
 	template<class T>
@@ -34,7 +33,7 @@ public:
 	template<class T>
 	void change_member_info(std::vector<T>& Mem_list);
 	template <class T>
-	std::size_t return_mem_index(std::vector<T>& Mem_list, bool &found);
+	std::size_t return_opponent_index(std::vector<T>& list, bool &found);
 
 /************************************************************************
 *******************EQUIPMENT, PROJECT AND COURSES FUNCTIONS**************
@@ -42,16 +41,14 @@ public:
 
 
 	void add_equipment();
-	void add_course_project();
-	void print_equipment_info();
-	void print_project_course_info();
-	template <class T>
-	std::size_t return_obj_index(std::vector<T>& Obj_list, bool &found);
 	template <class T>
 	void check_out(std::vector<T>& Mem_list);
 	template <class T>
 	void return_equip(std::vector<T>& Mem_list);
+
+	void add_project_course();
 	void project_course_status_change();
+	void project_course_enrollment();
 
 
 
@@ -62,7 +59,8 @@ public:
 
 
 
-
+	template <class T>
+	void print_vector_list(std::vector<T>& list);
 	template <class T>
 	void save_file(std::string file_name,  std::vector<T>& Mem_list);
 	template <class T>
