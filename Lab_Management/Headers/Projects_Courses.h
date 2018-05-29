@@ -37,6 +37,8 @@ public:
 	~Projects_Courses();
 	char* get_name();
 	char* get_IDnumber();
+	char* get_tutor_IDnumber();
+	char* get_member_IDnumber(int index);
 	void change_status(char* status);
 	void print_info();
 	void add_member(char* name, char* ID_number, int index);

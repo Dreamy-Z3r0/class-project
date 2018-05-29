@@ -33,7 +33,8 @@ void Projects_Courses::print_info()
 {
 	std::cout << " " << std::endl;
 	std::cout << "Project name: " << name << ": (" << status << ")\n";
-	std::cout << "Start: " << start_date;
+	std::cout << "ID Number: " << ID_number;
+	std::cout << "\nStart: " << start_date;
 	std::cout << "\nDuration: " << duration;
 	std::cout << "\nDescription: " << description << std::endl;
 
@@ -47,7 +48,7 @@ void Projects_Courses::print_info()
 	
 		if (!Member_List[i].vacancy)
 		{
-			std::cout << "Member: " << i + 1 <<  Member_List[i].name << std::endl;
+			std::cout << "Member: " << i + 1 << "\n" << Member_List[i].name << std::endl;
 			std::cout << "ID number: " << Member_List[i].ID_Number << std::endl;
 		}
 	}
@@ -113,4 +114,15 @@ bool Projects_Courses::duplicate_member_check(char* ID_number)
 		if (strcmp(Member_List[i].ID_Number,ID_number) == 0) return true;
 	}
 	return false;
+}
+
+
+char* Projects_Courses::get_tutor_IDnumber()
+{
+	return this->project_tutor.ID_Number;
+}
+char* Projects_Courses::get_member_IDnumber(int index)
+{
+	return this->Member_List[index].ID_Number;
+
 }

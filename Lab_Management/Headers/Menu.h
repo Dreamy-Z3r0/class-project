@@ -32,6 +32,8 @@ public:
 	void change_member_info(std::vector<T>& Mem_list);
 	template <class T>
 	std::size_t return_opponent_index(std::vector<T>& list, bool &found);
+	template<class T>
+	std::size_t return_opponent_index(std::vector<T>& Mem_list, char* IDnumber, bool &found);
 
 /************************************************************************
 *******************EQUIPMENT, PROJECT AND COURSES FUNCTIONS**************
@@ -47,7 +49,7 @@ public:
 	void add_project_course();
 	void project_course_status_change();
 	void project_course_enrollment();
-
+	void project_finish(int project_index);
 
 
 /************************************************************************

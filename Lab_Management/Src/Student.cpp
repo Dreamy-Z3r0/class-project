@@ -203,8 +203,9 @@ void Student::print_info()
 	else {
 		for (int i = 0; i < 2; i++)
 		{
+			std::cout << "Index: " << i << std::endl;
 			if (!this->involved__list[i].vacancy)
-				std::cout << "Project involved: " << this->involved__list[i].name << "\n" << "Project ID Number: " << this->involved__list[i].ID_number << std::endl;
+				std::cout <<"Index in condition: " << involved__list[i].vacancy <<  "Project involved: " << this->involved__list[i].name << "\n" << "Project ID Number: " << this->involved__list[i].ID_number << std::endl;
 		}
 	}	
 	std::cout << " " << std::endl;
@@ -215,4 +216,16 @@ void Student::set_project_list(char* project_name, char* ID_num, int vacancy_ind
 	strcpy_s(this->involved__list[vacancy_index].name, 50, project_name);
 	strcpy_s(this->involved__list[vacancy_index].ID_number, 10, ID_num);
 	this->involved__list[vacancy_index].vacancy = false;
+}
+
+
+char* Student::get_project_IDnumber(int index)
+{
+	return involved__list[index].ID_number;
+}
+void Student::project_done(int index)
+{
+	strcpy_s(this->involved__list[index].name, 50, "none");
+	strcpy_s(this->involved__list[index].ID_number, 10, "none");
+	this->involved__list[index].vacancy = true;
 }

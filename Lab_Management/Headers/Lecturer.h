@@ -14,5 +14,7 @@ public:
 	int return_occupied_vacancies(const char* mode) override;
 	int return_vacancy_index(const char* mode) override;
 	void set_project_list(char* project_name, char* ID_num, int vacancy_index) override;
+	char* get_project_IDnumber(int index) override;
+	void project_done(int index) override;
 	void print_info() override;
 };

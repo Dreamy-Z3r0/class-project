@@ -54,6 +54,8 @@ public:
 	char* get_phonenumber();
 	char* get_IDnumber();
 	char* get_equip_IDnumber(int index);
+	virtual char* get_project_IDnumber(int index);
+	virtual void project_done(int index);
 	int get_equip_quantity(int index);
 
 	int return_vacancy_index(const char* mode) override;

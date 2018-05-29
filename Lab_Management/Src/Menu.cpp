@@ -10,7 +10,6 @@
  *@param none
  */
 
-
 MENU::MENU()
 {
 	
@@ -21,6 +20,11 @@ MENU::MENU()
 
 }
 
+
+/*****************************************************************
+********************MENU USER-INTERFACE***************************
+******************************************************************/
+
 /**
  *Main Menu interface
  *@param none
@@ -30,9 +34,14 @@ MENU::MENU()
 void MENU::Main_menu()
 {
 Main_Screen:
+	//Variables declaration
 	int choice;
 	this->cont = true;
+	
+	//Clear everything left on the screen
 	this->clear_screen();
+	
+	//Main Menu screen
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "\tMenu" << std::endl;
 	std::cout << "1: Students" << std::endl;
@@ -48,31 +57,28 @@ Main_Screen:
 
 	case 1: {
 		this->clear_screen();
-		this->Student_Menu();
-		break;
+		this->Student_Menu(); //Go to Sub-menu: Student Menu
 	}
 	case 2:
 	{	
 		this->clear_screen();
-		this->Lecture_Menu();
-		break;
+		this->Lecture_Menu();//Go to Sub-menu: Lecturer Menu
 	}
 	case 3:
 	{	
 		this->clear_screen();
-		this->Equipment_Menu();
-		break;
+		this->Equipment_Menu();//Go to Sub-menu: Equipment Menu
 	}
 	case 4:
 	{
 		this->clear_screen();
-		this->Courses_Project_Menu();
-		break;
+		this->Courses_Project_Menu();//Go to Sub-menu: Course and project menu
 	}
 	default:
-	{
-		std::cout << "Invalid Choice!" << std::endl;
-		goto Main_Screen;
+	{	
+		//Go back to the main Menu if user enters invalid input 
+		std::cout << "Invalid Choice!" << std::endl; 
+		goto Main_Screen; 
 	}
 	}
 }
@@ -84,9 +90,13 @@ Main_Screen:
  */
 void MENU::Student_Menu()
 {
+	//Variable declaration
 	this->cont = true;
 	int sub_choice;
+
+	//Save data in file
 	this->save_file<Student>("Resources/Student_List.dat", Student_list);
+	//Student Menu Interface
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "Submenu: Students" << std::endl;
 	std::cout << "1: Add Students" << std::endl;
@@ -100,24 +110,24 @@ void MENU::Student_Menu()
 	switch (sub_choice)
 	{
 	case 1: {
-		this->add_member<Student>(Student_list);
+		this->add_member<Student>(Student_list);			// Add a new Student to the Student List
 		break;
 	}
 	case 2: {
-		this->change_member_info<Student>(Student_list);
+		this->change_member_info<Student>(Student_list);	// Change Student Infomation
 		break; }
 	case 3: {
-		this->print_vector_list<Student>(Student_list);
+		this->print_vector_list<Student>(Student_list);		// Print Student List
 		break;
 	}
 	case 4: {
-		this->find_member<Student>(Student_list);
+		this->find_member<Student>(Student_list);			// Find a Student
 		break; }
 	case 5: {
-		this->remove_member<Student>(Student_list);
+		this->remove_member<Student>(Student_list);			// Remove a Student
 		break; }
 	case 6: {
-		this->Main_menu();
+		this->Main_menu();									// Go Back to Main menu
 		break; }
 	default: {}
 	}
@@ -135,9 +145,11 @@ void MENU::Student_Menu()
 
 void MENU::Lecture_Menu()
 {
-	this->save_file<Lecturer>("Resources/Lecturer_List.dat", Lecturer_list);
+	//Variable Declaration
 	this->cont = true;
 	int sub_choice;
+	//Save data in file
+	this->save_file<Lecturer>("Resources/Lecturer_List.dat", Lecturer_list);
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "Submenu: Lecturers" << std::endl;
 	std::cout << "1: Add new Lecturer" << std::endl;
@@ -152,29 +164,29 @@ void MENU::Lecture_Menu()
 	{
 	case 1: {
 		this->clear_screen();
-		this->add_member<Lecturer>(Lecturer_list);
+		this->add_member<Lecturer>(Lecturer_list);				// Add a new Lecturer
 		break;
 	}
 	case 2: {
 		this->clear_screen();
-		this->change_member_info<Lecturer>(Lecturer_list);
+		this->change_member_info<Lecturer>(Lecturer_list);		// Change a lecturer Information
 		break; }
 	case 3: {
 		this->clear_screen();
-		this->print_vector_list<Lecturer>(Lecturer_list);
+		this->print_vector_list<Lecturer>(Lecturer_list);		// Print the Lecturer List 
 		break;
 	}
 	case 4: {
 		this->clear_screen();
-		this->find_member<Lecturer>(Lecturer_list);
+		this->find_member<Lecturer>(Lecturer_list);				// Find a Lecturer
 		break; }
 	case 5: {
 		this->clear_screen();
-		this->remove_member<Lecturer>(Lecturer_list);
+		this->remove_member<Lecturer>(Lecturer_list);			// Remove a Lecturer
 		break; }
 	case 6: {
-		this->Main_menu();
-		}
+		this->Main_menu();										// Back to Main Menu
+	}
 	default: {}
 	}
 	this->clear_screen();
@@ -191,9 +203,12 @@ void MENU::Lecture_Menu()
 
 void MENU::Equipment_Menu()
 {	
-	this->save_file<Equipment>("Resources/Equipment_List.dat", Equipment_list);
+	//Variable Declaration
 	this->cont = true;
 	int sub_choice;
+	//Save data to files
+	this->save_file<Equipment>("Resources/Equipment_List.dat", Equipment_list);
+
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "Submenu: Lab Equipment" << std::endl;
 	std::cout << "1: In-lab Equipment" << std::endl;
@@ -207,22 +222,54 @@ void MENU::Equipment_Menu()
 	{
 	case 1: {
 		this->clear_screen();
-		this->print_vector_list<Equipment>(Equipment_list);
+		this->print_vector_list<Equipment>(Equipment_list);				//Print all the In-lab Equipment
 		break; }
 	case 2: {
 		this->clear_screen();
-		this->add_equipment();
+		this->add_equipment();											//Add a new Equipment
 		break; }
 	case 3: {
 		this->clear_screen();
-		this->check_out<Student>(Student_list);
+		int check_out_choice;
+		std::cout << "Identify yourself, are you a: [1] Student, [2] Lecturer ? " << std::endl;	// Check if the borrower is a Student or Lecturer
+		switch (check_out_choice)
+		{
+		case 1: {
+			this->clear_screen();
+			this->check_out<Student>(Student_list);						//Check out an equipment (Student)
+			break;			//	
+		}
+		case 2:
+		{
+			this->clear_screen();
+			this->check_out<Lecturer>(Lecturer_list);					//Check out an equipment (Lecturer)
+			break;
+		}
+		default: {}
+		}
 		break; }
 	case 4: {
 		this->clear_screen();
-		this->return_equip<Student>(Student_list);
+		int check_out_choice;
+		std::cout << "Identify yourself, are you a: [1] Student, [2] Lecturer ? " << std::endl; // Check if the borrower is a Student or Lecturer
+		switch (check_out_choice)
+		{
+		case 1: {
+			this->clear_screen();
+			this->return_equip<Student>(Student_list);					//Return an equipment (Student)
+			break;			
+		}
+		case 2:
+		{
+			this->clear_screen();
+			this->return_equip<Lecturer>(Lecturer_list);				//Return an equipment (Lecturer)
+			break;
+		}
+		default: {}
+		}
 		break; }
 	case 5: {
-		this->Main_menu();
+		this->Main_menu();												//Go back to main menu
 		break; }
 	default: {}
 	}
@@ -238,10 +285,13 @@ void MENU::Equipment_Menu()
  */
 
 void MENU::Courses_Project_Menu()
-{
-	this->save_file<Projects_Courses>("Resources/Project_Course_List.dat", Project_Course_List);
+{	
+	//Varaible Declaration
 	this->cont = true;
 	int sub_choice;
+	//Save data to the file
+	this->save_file<Projects_Courses>("Resources/Project_Course_List.dat", Project_Course_List);
+	//Menu Interface
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "Submenu: Project/Courses" << std::endl;
 	std::cout << "1: Available Courses/Project" << std::endl;
@@ -257,21 +307,22 @@ void MENU::Courses_Project_Menu()
 	case 1:
 	{	
 		this->clear_screen();
-		this->print_vector_list<Projects_Courses>(Project_Course_List);
+		this->print_vector_list<Projects_Courses>(Project_Course_List);				//Print all the Projects/Courses
 		break;
 		}
 	case 2: {
 		this->clear_screen();
-		this->add_project_course();
-		this->Courses_Project_Menu();
+		this->add_project_course();													//Add a new course
 		break; }
 	case 3: {
 		this->clear_screen();
-		this->project_course_enrollment();
+		this->project_course_enrollment();											//Student enrollment for the Project/Course
 		break;
 	}
 	case 4:
-	{
+	{	
+		this->clear_screen();
+		this->project_course_status_change();										//Update the Project/Course status
 		break;
 	}
 	case 5:
@@ -286,9 +337,204 @@ void MENU::Courses_Project_Menu()
 }
 
 
-/*****************************************************************
-**************STUDENT AND LECTURER BASIC FUNCTIONS****************
-******************************************************************/
+
+
+
+/********************************************************************************************************************
+****************************************** MENU BASIC OPERATIONS ****************************************************
+********************************************************************************************************************/
+
+/**
+*Save objects (all kinds) from a vector to a file
+*@param <std::string> file_name, <std::vector> &Mem_list
+*@return void
+*/
+
+template<class T>
+void MENU::save_file(std::string file_name, std::vector<T>& Mem_list)
+{
+	//Store the size of a vector into a variable 
+	std::size_t size = Mem_list.size(); 
+	//Create an object of fstream
+	std::fstream file;	
+	/*Open the file with the following modes:
+		+ in (input):	open the file for reading purpose
+		+ out (Output):	open the file for writing purpose
+		+ trunc(truncate): delete all the content of the file before writing new one
+		+ binary: write data in binary mode
+	*/
+	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::trunc | std::fstream::binary);
+	//Check if the file is opened successfully or not
+	if (file.is_open()) {
+		//Set the pointer to the end of stream to write new data
+		file.seekp(0, std::ios::end);
+		for (std::size_t i = 0; i < size; i++)
+		{
+			//Write all elements of the given vector to the file, with the size of the accroding class
+			file.seekp(0, std::ios::end);
+			file.write((char*)&Mem_list[i], sizeof(T));
+		}
+		file.close();
+	}
+	else std::cout << "Error Opening the file" << std::endl; 
+}
+
+/**
+*Load objects (all kinds) from a file to a vector
+*@param <std::string> file_name, <std::vector> &Mem_list
+*@return void
+*/
+
+
+template<class T>
+void MENU::load_file(std::string file_name, std::vector<T>& Mem_list)
+{
+	//Create a temp object with class T
+	T check;
+	//std::cout << "size of a class" << sizeof(T) << std::endl;
+	std::size_t size = Mem_list.size();
+	std::fstream file;
+	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::binary);
+
+	if (file.is_open()) {
+
+		file.seekg(0, std::ios::end);	//move the pointer to the end of the file to get data
+		std::streamoff end_point = file.tellg();		  // Return the position of pointer
+														  
+		std::streamoff size_of_file = end_point / sizeof(T);	//Return the number of element with size of class T in the file
+		file.seekg(0, std::ios::beg);     //move back to the beginning of the file
+
+		//std::streamoff fl_sz = file.tellg();
+		for (std::streamoff i = 0; i < size_of_file; i++)
+		{
+			//std::streamoff fl_sz = file.tellg();
+			file.read((char*)&check, sizeof(T)); //Store the read data to a same type object, named "check" in this case.
+			Mem_list.push_back(check);			// Add the object to the vector
+			Mem_list[i].print_info();
+		}
+	}
+	else std::cout << "Error Opening the file" << std::endl;
+}
+
+
+/**
+*Print the list of all members (Student and Lecturers)
+*@param <std::vector> &Mem_list
+*@return void
+*/
+
+
+template <class T>
+void MENU::print_vector_list(std::vector<T>& list)
+{
+	//Print different with different type of class
+	if (std::is_same<T, Student>::value) std::cout << "The Student List: " << std::endl;
+	else if (std::is_same<T, Lecturer>::value) std::cout << "The Lecturer List: " << std::endl;
+	else if (std::is_same<T, Equipment>::value) std::cout << "The Equipment List: " << std::endl;
+	else std::cout << "The Project/Course List: " << std::endl;
+	//Get the vector size
+	std::size_t size = list.size();
+	std::cout << "The list " << std::endl;
+	//print out all the element in the vector
+	for (std::size_t i = 0; i < size; i++) {
+		std::cout << "No: " << i + 1 << std::endl;
+		list[i].print_info();
+	}
+	std::cout << "press 'y' to go back" << std::endl;
+	this->cont = this->yes_no_option();
+
+}
+
+
+/**
+*Return a object index in a vector (regardless of class). Required user input
+*@param <std::vector> &Mem_list, <bool> $found
+*@return std::size_t
+*/
+
+template<class T>
+std::size_t MENU::return_opponent_index(std::vector<T>& list, bool &found)
+{
+	//Variable Declaration
+	char ID_num[20];
+	std::size_t found_index = 0;
+	std::size_t size = list.size();
+	//Print different content based on the class type
+	if (std::is_same<T, Student>::value) std::cout << "Please Enter the Student ID Number: " << std::endl;
+	else if (std::is_same<T, Lecturer>::value) std::cout << "Please Enter the Lecturer ID Number: " << std::endl;
+	else if (std::is_same<T, Equipment>::value) std::cout << "Please Enter the Equipment ID Number: " << std::endl;
+	else std::cout << "Please Enter the Project/Course ID Number " << std::endl;
+	//Use input
+	std::cin >> ID_num;
+	for (std::size_t i = 0; i < size; i++)	//Scan all the list
+	{
+		if (strcmp(ID_num, list[i].get_IDnumber()) == 0) //Compare the two ID numbers
+		{
+			found = true;					//Return true if the member is found
+			return found_index = i;			//Return Member index in the list
+		}	
+	}
+	return 0;
+}
+
+
+/**
+*Return a object index in a vector (regardless of class). Does not require user-input
+*@param <std::vector> &Mem_list, <bool> $found
+*@return std::size_t
+*/
+
+template<class T>
+std::size_t MENU::return_opponent_index(std::vector<T>& Mem_list, char* IDnumber, bool &found)
+{	
+
+	std::size_t size = Mem_list.size();
+	for (std::size_t i = 0; i < size; i++) // Scan all the list
+	{
+		if (strcmp(Mem_list[i].get_IDnumber(), IDnumber) == 0) //Compare the two ID numbers
+		{
+			found = true;	//If found, return true
+			return i;		//Return member index in the list
+		}
+	}
+	return 0;
+}
+
+
+
+/**
+*Used for yes no option. Return true when input is 'y' and false when 'n'
+*@param none
+*@return bool
+*/
+
+bool MENU::yes_no_option()
+{
+	char a = ' ';
+	std::cin >> a;
+	if (a == 'y') return true;
+	else if (a == 'n') return false;
+	else {
+		std::cout << "Invalid Input" << std::endl;
+		this->yes_no_option();
+	}
+}
+
+void MENU::clear_screen()
+{
+#ifdef _WIN32
+	system("CLS");
+#else
+	std::cout << "\033[2J\033[1;1H";
+#endif
+
+}
+
+
+
+/********************************************************************************************************************
+*******************************************STUDENT AND LECTURER BASIC FUNCTIONS**************************************
+********************************************************************************************************************/
 
 /**
  *Add a new member (Student or Lecturer) to vectors
@@ -300,13 +546,16 @@ void MENU::Courses_Project_Menu()
 template <class T>
 void MENU::add_member(std::vector<T>& Mem_list)
 {
+	//Variable declaration
 	char name[50], email[50];
 	char phonenumber[20], ID_number[10];
 	this->clear_screen();
+
 	while (cont) {
+		//Input all the basic info
 		std::cout << "Enter the name" << std::endl;
-		std::cin.get(); //Enter sucks in the input buffer until it encounters another input statement. Use cin.get() to get risk of it!
-		std::cin.getline(name, 50);
+		std::cin.get();					//Enter sucks in the input buffer until it encounters another input statement. So use cin.get() to get risk of it.
+		std::cin.getline(name, 50);		
 		std::cout << "Enter the email" << std::endl;
 		std::cin.getline(email, 50);
 		std::cout << "Enter the phone number" << std::endl;
@@ -315,14 +564,9 @@ void MENU::add_member(std::vector<T>& Mem_list)
 		std::cin.getline(ID_number, 10);
 		T newmember(name, email, phonenumber, ID_number);
 		Mem_list.push_back(newmember);
-		//std::cout << "Debug " << Mem_list.size() << std::endl;
-		std::cout << "Do you want to continue? [y/n]" << std::endl;
-		cont = this->yes_no_option();
+		std::cout << "Do you want to continue adding another Student? [y/n]" << std::endl;
+		cont = this->yes_no_option();	//Check if the useer wants to continue adding more students
 	}
-	/*
-	if (std::is_same<T, Student>::value) this->Student_Menu();
-	else this->Lecture_Menu();
-	*/
 }
 
 
@@ -731,9 +975,16 @@ void MENU::project_course_status_change()
 		std::size_t index = this->return_opponent_index<Projects_Courses>(Project_Course_List, found);
 		if (found)
 		{
+			char project_id[10];
+			strcpy_s(project_id, 10, Project_Course_List[index].get_IDnumber());
 			std::cout << "Enter the current status of the Project/Course" << std::endl;
 			std::cout << "Follow the format [On Going] [%TIME left] [Finished] [Abandoned] [Pending]" << std::endl;
+			std::cin.get();
 			std::cin.getline(changed_status, 20);
+			if (strcmp(changed_status, "Finished") == 0 || strcmp(changed_status, "Abandoned")==0)
+			{	
+				this->project_finish(index);
+			}
 			Project_Course_List[index].change_status(changed_status);
 		}
 		else std::cout << "No Project/Course found" << std::endl;
@@ -741,6 +992,47 @@ void MENU::project_course_status_change()
 		this->cont = this->yes_no_option();
 	}
 }
+void MENU::project_finish(int project_index)
+{
+	bool tutor_found = false;
+	char project_id[10];
+	strcpy_s(project_id, 10, Project_Course_List[project_index].get_IDnumber());
+	std::size_t tutor_index = this->return_opponent_index<Lecturer>(Lecturer_list, 
+		Project_Course_List[project_index].get_tutor_IDnumber(), tutor_found);
+	if (tutor_found)
+	{	
+		for (int i = 0; i < 5; i++)
+		{
+			if (strcmp(project_id, Lecturer_list[tutor_index].get_project_IDnumber(i)) == 0)
+			{
+				Lecturer_list[tutor_index].project_done(i);
+				std::cout << "Project is deleted from the Lecturer" << std::endl;
+			}
+		}
+	}
+	else std::cout << "No Tutor found" << std::endl;
+	char student_id[10];
+	for (int i = 0; i < 5; i++)
+	{
+		bool mem_found = false;
+		strcpy_s(student_id, 10, Project_Course_List[project_index].get_member_IDnumber(i));
+		std::size_t student_index = this->return_opponent_index<Student>(Student_list, student_id, mem_found);
+		if (mem_found)
+		{
+			for (int a = 0; a < 2; a++)
+			{
+				if (strcmp(project_id, Student_list[student_index].get_project_IDnumber(a))==0) 
+				{
+					Student_list[student_index].project_done(a);
+					std::cout << "Project is deleted from student" << std::endl;
+				}
+
+			}
+		}
+
+	}
+}
+
 
 
 void MENU::project_course_enrollment()
@@ -759,7 +1051,6 @@ void MENU::project_course_enrollment()
 			{
 				std::cout << "This Project is currently full" << std::endl;
 				std::cout << "In order to keep productivity, each project/course only has 5 members" << std::endl;
-				break;
 			}
 			else {
 				std::cout << "Enter the ID number of Students involved in this project/course" << std::endl;
@@ -807,162 +1098,3 @@ void MENU::project_course_enrollment()
 
 
 
-
-/*****************************************************************
-********************BASIC OPERATION FUNCTIONS*********************
-******************************************************************/
-
-/**
- *Save objects (all kinds) from a vector to a file
- *@param <std::string> file_name, <std::vector> &Mem_list
- *@return void
- */
-
-template<class T>
-void MENU::save_file(std::string file_name, std::vector<T>& Mem_list)
-{
-	std::size_t size = Mem_list.size();
-	std::fstream file;
-	file.open(file_name, std::fstream::in | std::fstream::out |std::fstream::trunc| std::fstream::binary);
-	
-	if (file.is_open()) {
-		file.seekp(0, std::ios::end);
-		for (std::size_t i = 0; i < size; i++)
-		{
-			std::cout << "Check_Save_loop" << std::endl;
-			file.seekp(0, std::ios::end);
-			file.write((char*)&Mem_list[i], sizeof(T));
-		}
-		file.close();
-	}
-	else std::cout << "Error Opening the file" << std::endl;
-}
-
-/**
- *Load objects (all kinds) from a file to a vector
- *@param <std::string> file_name, <std::vector> &Mem_list
- *@return void
- */
-
-
-template<class T>
-void MENU::load_file(std::string file_name, std::vector<T>& Mem_list)
-{	
-	T check;
-	//std::cout << "size of a class" << sizeof(T) << std::endl;
-	std::size_t size = Mem_list.size();
-	std::fstream file;
-	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::binary);
-	
-	if (file.is_open()) {
-		
-		file.seekg(0, std::ios::end);     //move to the end of the file
-		std::streamoff end_point = file.tellg();		  // The position of pointer
-		//std::cout << "The pointer at the end " << end_point << std::endl;
-		std::streamoff size_of_file = end_point / sizeof(T);
-		file.seekg(0, std::ios::beg);     //move to the beg of the file
-		//std::cout << "There are " << size_of_file << " (s) in this database ";
-		
-		std::streamoff fl_sz = file.tellg();
-		//std::cout << "The pointer is firstly " << fl_sz << std::endl;
-		//while(!file.eof())
-		//while(file.getline(check,10))
-		//while (file.read((char*)&Mem_list, sizeof(T)));
-		for(std::streamoff i = 0; i < size_of_file; i++)
-		{
-			std::streamoff fl_sz = file.tellg();
-			//std::cout << "The pointer is" << fl_sz << std::endl;
-			file.read((char*)&check, sizeof(T));
-			Mem_list.push_back(check);
-			Mem_list[i].print_info();
-		}
-	}
-	else std::cout << "Error Opening the file" << std::endl;
-}
-
-
-/**
-*Print the list of all member (Student and Lecturers)
-*@param <std::vector> &Mem_list
-*@return void
-*/
-
-
-template <class T>
-void MENU::print_vector_list(std::vector<T>& list)
-{
-	if (std::is_same<T, Student>::value) std::cout << "The Student List: " << std::endl;
-	else if (std::is_same<T, Lecturer>::value) std::cout << "The Lecturer List: " << std::endl;
-	else if (std::is_same<T, Equipment>::value) std::cout << "The Equipment List: " << std::endl;
-	else std::cout << "The Project/Course List: " << std::endl;
-	std::size_t size = list.size();
-	std::cout << "The list " << std::endl;
-	for (std::size_t i = 0; i < size; i++) {
-		std::cout << "No: " << i + 1 << std::endl;
-		list[i].print_info();
-	}
-	std::cout << "press 'y' to go back" << std::endl;
-	this->cont = this->yes_no_option();
-
-}
-
-
-/**
-*Return a specific member (Student or Lecturer) index
-*@param <std::vector> &Mem_list, <bool> $found
-*@return std::size_t
-*/
-
-template<class T>
-std::size_t MENU::return_opponent_index(std::vector<T>& list, bool &found)
-{
-	char ID_num[20];
-	std::size_t found_index = 0;
-	std::size_t size = list.size();
-
-	if (std::is_same<T, Student>::value) std::cout << "Please Enter the Student ID Number: " << std::endl;
-	else if (std::is_same<T, Lecturer>::value) std::cout << "Please Enter the Lecturer ID Number: " << std::endl;
-	else if (std::is_same<T, Equipment>::value) std::cout << "Please Enter the Equipment ID Number: " << std::endl;
-	else std::cout << "Please Enter the Project/Course ID Number " << std::endl;
-	
-	std::cin >> ID_num;
-	for (std::size_t i = 0; i < size; i++)
-	{	
-		if (strcmp(ID_num,list[i].get_IDnumber())==0)
-		{
-			found = true;
-			return found_index = i;
-		}
-	}
-	return 0;
-}
-
-
-
-/**
-*Used for yes no option. Return true when input is 'y' and false when 'n'
-*@param none
-*@return bool
-*/
-
-bool MENU::yes_no_option()
-{
-	char a = ' ';
-	std::cin >> a;
-	if (a == 'y') return true;
-	else if (a == 'n') return false;
-	else {
-		std::cout << "Invalid Input" << std::endl;
-		this->yes_no_option();
-	}
-}
-
-void MENU::clear_screen()
-{
-#ifdef _WIN32
-	system("CLS");
-#else
-	std::cout << "\033[2J\033[1;1H";
-#endif
-
-}

@@ -65,8 +65,15 @@ int Lecturer::return_vacancy_index(const char* mode)
 			}
 		}
 	}
-	else std::cout << "FUCK YOU" << std::endl;
 return -1;
+}
+
+
+void Lecturer::project_done(int index)
+{
+	strcpy_s(this->project_list[index].name, 50, "none");
+	strcpy_s(this->project_list[index].ID_number, 10, "none");
+	this->project_list[index].vacancy = true;
 }
 
 
@@ -76,6 +83,12 @@ void Lecturer::set_project_list(char* project_name, char* ID_num, int vacancy_in
 	strcpy_s(this->project_list[vacancy_index].ID_number, 10, ID_num);
 	this->project_list[vacancy_index].vacancy = false;
 }
+
+char* Lecturer::get_project_IDnumber(int index)
+{
+	return this->project_list[index].ID_number;
+}
+
 
 void Lecturer::print_info()
 {
