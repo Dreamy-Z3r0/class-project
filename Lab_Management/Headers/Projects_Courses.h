@@ -28,19 +28,20 @@ private:
 	char description[100];
 
 	Member Member_List[5];
-	Tutor Tutor_list[2];
+	Tutor project_tutor;
 
 public:
 	Projects_Courses() {};
-	Projects_Courses(char* name, char* ID_number, char* start_date, char* duration, char* description, const char* status = "On-Going");
+	Projects_Courses(char* name, char* ID_number, char* tutor_name, char* tutor_ID_number,
+	char* start_date, char* duration, char* description, const char* status = "On-Going");
 	~Projects_Courses();
 	char* get_name();
 	char* get_IDnumber();
 	void change_status(char* status);
 	void print_info();
 	void add_member(char* name, char* ID_number, int index);
-	int return_vacancy_index() override;
-	int return_occupied_vacancies() override;
+	int return_vacancy_index(const char* mode) override;
+	int return_occupied_vacancies(const char* mode) override;
 	bool duplicate_member_check(char* ID_number);
-
+	
 };

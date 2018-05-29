@@ -15,6 +15,7 @@ struct projects
 {
 	bool vacancy = true;
 	char name[50] = "none";
+	char ID_number[10] = "none";
 };
 
 class Student : public Check_Vacancy {
@@ -23,9 +24,9 @@ protected:
 	char email[50];
 	char phonenumber[20];
 	char ID_Number[10];
+	borrowthings borrowed_list[3];
 private:
-	borrowthings list[3];
-	projects involved_project[2];
+	projects involved__list[2];
 public:
 /***********************************
 ***********CONSTRUCTOR**************
@@ -43,7 +44,7 @@ public:
 	void set_phonenumber(char* phonenumber);
 	void set_IDnumber(char* ID_Number);
 	void set_borrow_list(char* equip_name, char* ID_number, int vacancy, int quantity, char* date);	
-	void set_project_list(char* project_name, int vacancy_index);
+	virtual void set_project_list(char* project_name, char* ID_num, int vacancy_index);
 	
 /***********************************
 ***********GET DATA*****************
@@ -55,15 +56,9 @@ public:
 	char* get_equip_IDnumber(int index);
 	int get_equip_quantity(int index);
 
-	int return_vacancy_index() override;
-	int return_occupied_vacancies() override;
+	int return_vacancy_index(const char* mode) override;
+	int return_occupied_vacancies(const char* mode) override;
 	void return_all_equipments(int vacancy);
+	virtual void print_info();
 
-	int return_project_vacancy_index();
-
-	void borrow_things() {};
-	void return_things() {};
-	void print_info();
-	void check_out() {};
-	void return_object() {};
 };

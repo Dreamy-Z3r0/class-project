@@ -32,6 +32,7 @@ void MENU::Main_menu()
 Main_Screen:
 	int choice;
 	this->cont = true;
+	this->clear_screen();
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "\tMenu" << std::endl;
 	std::cout << "1: Students" << std::endl;
@@ -46,21 +47,25 @@ Main_Screen:
 	{
 
 	case 1: {
+		this->clear_screen();
 		this->Student_Menu();
 		break;
 	}
 	case 2:
-	{
+	{	
+		this->clear_screen();
 		this->Lecture_Menu();
 		break;
 	}
 	case 3:
-	{
+	{	
+		this->clear_screen();
 		this->Equipment_Menu();
 		break;
 	}
 	case 4:
 	{
+		this->clear_screen();
 		this->Courses_Project_Menu();
 		break;
 	}
@@ -96,31 +101,29 @@ void MENU::Student_Menu()
 	{
 	case 1: {
 		this->add_member<Student>(Student_list);
-		this->Student_Menu();
 		break;
 	}
 	case 2: {
 		this->change_member_info<Student>(Student_list);
-		this->Student_Menu();
 		break; }
 	case 3: {
 		this->print_vector_list<Student>(Student_list);
-		this->Student_Menu();
 		break;
 	}
 	case 4: {
 		this->find_member<Student>(Student_list);
-		this->Student_Menu();
 		break; }
 	case 5: {
 		this->remove_member<Student>(Student_list);
-		this->Student_Menu();
 		break; }
 	case 6: {
 		this->Main_menu();
 		break; }
 	default: {}
 	}
+	this->clear_screen();
+	this->Student_Menu();
+
 }
 
 
@@ -142,53 +145,41 @@ void MENU::Lecture_Menu()
 	std::cout << "3: Print Lecturer List" << std::endl;
 	std::cout << "4: Find Lecturer" << std::endl;
 	std::cout << "5: Remove Lecturer info" << std::endl;
-	std::cout << "6: Create a new project" << std::endl;
-	std::cout << "7: Update Project status" << std::endl;
-	std::cout << "8: Delete a project" << std::endl;
-	std::cout << "9: Back" << std::endl;
+	std::cout << "6: Back" << std::endl;
 	std::cout << "Enter your choice [1-6]" << std::endl;
 	std::cin >> sub_choice;
 	switch (sub_choice)
 	{
 	case 1: {
+		this->clear_screen();
 		this->add_member<Lecturer>(Lecturer_list);
-		this->Lecture_Menu();
 		break;
 	}
 	case 2: {
+		this->clear_screen();
 		this->change_member_info<Lecturer>(Lecturer_list);
-		this->Lecture_Menu();
 		break; }
 	case 3: {
+		this->clear_screen();
 		this->print_vector_list<Lecturer>(Lecturer_list);
-		this->Lecture_Menu();
-
 		break;
 	}
 	case 4: {
+		this->clear_screen();
 		this->find_member<Lecturer>(Lecturer_list);
-		this->Lecture_Menu();
 		break; }
 	case 5: {
+		this->clear_screen();
 		this->remove_member<Lecturer>(Lecturer_list);
-		this->Lecture_Menu();
 		break; }
 	case 6: {
-		this->add_project_course();
-		this->Lecture_Menu();
-		break; }
-	case 7: {
-		this->project_course_status_change();
-		this->Lecture_Menu();
-		break; }
-	case 8: {
-
-		break; }
-	case 9: {
 		this->Main_menu();
-		break; }
+		}
 	default: {}
 	}
+	this->clear_screen();
+	this->Lecture_Menu();
+
 }
 
 /**
@@ -215,26 +206,29 @@ void MENU::Equipment_Menu()
 	switch (sub_choice)
 	{
 	case 1: {
+		this->clear_screen();
 		this->print_vector_list<Equipment>(Equipment_list);
-		this->Equipment_Menu();
 		break; }
 	case 2: {
+		this->clear_screen();
 		this->add_equipment();
-		this->Equipment_Menu();
 		break; }
 	case 3: {
+		this->clear_screen();
 		this->check_out<Student>(Student_list);
-		this->Equipment_Menu();
 		break; }
 	case 4: {
+		this->clear_screen();
 		this->return_equip<Student>(Student_list);
-		this->Equipment_Menu();
 		break; }
 	case 5: {
 		this->Main_menu();
 		break; }
 	default: {}
 	}
+	this->clear_screen();
+	this->Equipment_Menu();
+
 }
 
 /**
@@ -251,43 +245,44 @@ void MENU::Courses_Project_Menu()
 	std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
 	std::cout << "Submenu: Project/Courses" << std::endl;
 	std::cout << "1: Available Courses/Project" << std::endl;
-	std::cout << "2: New Course/Project" << std::endl;
+	std::cout << "2: Add a New Course/Project" << std::endl;
+	std::cout << "3: Course/Project Enrollment" << std::endl;
+	std::cout << "4: Project Status Update" << std::endl;
+	std::cout << "5: Back" << std::endl;
+
 	std::cout << "Enter your choice [1 or 2]" << std::endl;
 	std::cin >> sub_choice;
 	switch (sub_choice)
 	{
 	case 1:
 	{	
+		this->clear_screen();
 		this->print_vector_list<Projects_Courses>(Project_Course_List);
-		int sub_sub_choice;
-		std::cout << "LAB MANAGEMENT SYSTEM" << std::endl;
-		std::cout << "Submenu: Project/Courses" << std::endl;
-		std::cout << "1: Enrollment" << std::endl;
-		std::cout << "2: Change Status" << std::endl;
-		std::cout << "3: Delete" << std::endl;
-		std::cout << "Enter your choice [1-3]" << std::endl;
-		std::cin >> sub_sub_choice;
-		switch (sub_sub_choice)
-		{
-		case 1: {
-			this->project_course_enrollment();
-			this->Courses_Project_Menu();
-			break; }
-		case 2: {
-			this->project_course_status_change();
-			this->Courses_Project_Menu();
-			break; }
-		case 3: {break; }
-		default: {}
-				 break;
+		break;
 		}
 	case 2: {
+		this->clear_screen();
 		this->add_project_course();
 		this->Courses_Project_Menu();
 		break; }
+	case 3: {
+		this->clear_screen();
+		this->project_course_enrollment();
+		break;
+	}
+	case 4:
+	{
+		break;
+	}
+	case 5:
+	{
+		this->Main_menu();
+	}
+	
 	default: {}
 	}
-	}
+	this->clear_screen();
+	this->Courses_Project_Menu();
 }
 
 
@@ -307,6 +302,7 @@ void MENU::add_member(std::vector<T>& Mem_list)
 {
 	char name[50], email[50];
 	char phonenumber[20], ID_number[10];
+	this->clear_screen();
 	while (cont) {
 		std::cout << "Enter the name" << std::endl;
 		std::cin.get(); //Enter sucks in the input buffer until it encounters another input statement. Use cin.get() to get risk of it!
@@ -314,7 +310,7 @@ void MENU::add_member(std::vector<T>& Mem_list)
 		std::cout << "Enter the email" << std::endl;
 		std::cin.getline(email, 50);
 		std::cout << "Enter the phone number" << std::endl;
-		std::cin.getline(phonenumber, 10);
+		std::cin.getline(phonenumber, 20);
 		std::cout << "Enter the ID number" << std::endl;
 		std::cin.getline(ID_number, 10);
 		T newmember(name, email, phonenumber, ID_number);
@@ -341,7 +337,8 @@ void MENU::add_member(std::vector<T>& Mem_list)
 
 template<class T>
 void MENU::find_member(std::vector<T>& Mem_list)
-{
+{	
+	this->clear_screen();
 	while (this->cont) {
 		bool found = false;
 		std::size_t index = this->return_opponent_index<T>(Mem_list, found);
@@ -368,6 +365,7 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 	char c_input[50];
 	char tele_input[20];
 	char n_input[10];
+	this->clear_screen();
 	while (this->cont) {
 		bool found = false;
 		std::size_t index = this->return_opponent_index<T>(Mem_list, found);
@@ -424,6 +422,7 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 template<class T>
 void MENU::remove_member(std::vector<T>& Mem_list)
 {
+	this->clear_screen();
 	while (this->cont) {
 		bool found = false;
 		std::size_t index = this->return_opponent_index<T>(Mem_list, found);
@@ -461,6 +460,7 @@ void MENU::add_equipment()
 {
 	char name[50], ID_number[10];
 	int quantity;
+	this->clear_screen();
 	while (cont) {
 		std::cout << "Enter equipment name" << std::endl;
 		std::cin.get();
@@ -488,6 +488,7 @@ void MENU::add_equipment()
 template<class T>
 void MENU::check_out(std::vector<T>& Mem_list)
 {
+	this->clear_screen();
 	while (this->cont) {
 		bool found = false;
 		std::size_t equip_index = this->return_opponent_index<Equipment>(Equipment_list, found); //Finding the equipment
@@ -506,8 +507,8 @@ void MENU::check_out(std::vector<T>& Mem_list)
 					std::size_t mem_index = this->return_opponent_index<T>(Mem_list, sub_found);
 					if (sub_found) {
 						char date[5];
-						int borrowed = Mem_list[mem_index].return_occupied_vacancies();
-						int vacancy = Mem_list[mem_index].return_vacancy_index();
+						int borrowed = Mem_list[mem_index].return_occupied_vacancies("BORROW");
+						int vacancy = Mem_list[mem_index].return_vacancy_index("BORROW");
 						std::cout << "The Member Info is: " << std::endl;
 						Mem_list[mem_index].print_info();
 						if (borrowed >= 3) {
@@ -575,6 +576,7 @@ void MENU::check_out(std::vector<T>& Mem_list)
 template<class T>
 void MENU::return_equip(std::vector<T>& Mem_list)
 {
+	this->clear_screen();
 	while (this->cont) {
 		bool found = false;
 		std::size_t index = this->return_opponent_index(Mem_list, found);
@@ -660,26 +662,62 @@ void MENU::return_equip(std::vector<T>& Mem_list)
 
 void MENU::add_project_course()
 {
-	
+	this->clear_screen();
+	std::cout << "Since a tutor is a requirement to create a new project, " << std::endl;
+	std::cout << "the tutor info is required" << std::endl;
 	while (cont) {
-		char name[50], ID_number[10] ,start_date[10], duration[10], description[100];
-		std::cout << "Enter the Project/Course name" << std::endl;
-		std::cin.get();
-		std::cin.getline(name, 50);
-		std::cout << "Enter the Project/Course ID number" << std::endl;
-		std::cin.getline(ID_number, 10);
-		std::cout << "Enter the Project/Course Start Date" << std::endl;
-		std::cin.getline(start_date, 10);
-		std::cout << "Enter the Project/Course duration" << std::endl;
-		std::cin.getline(duration, 10);
-		std::cout << "Enter the Project/Course Description" << std::endl;
-		std::cin.getline(description, 100);
+		char name[50], ID_number[10] , start_date[10], duration[10], description[100];
+		bool found = false;
+		std::size_t tutor_index = this->return_opponent_index<Lecturer>(Lecturer_list,found);
+		if (found)
+		{
+			int tutor_project_index = Lecturer_list[tutor_index].return_vacancy_index("HOST");
+			std::cout << "Lecturer Information: " << std::endl;
+			Lecturer_list[tutor_index].print_info();
+			if (tutor_project_index == -1) {
+				std::cout << "This Lecturer has hosted more than 5 projects" << std::endl;
+				std::cout << "Finish other projects first before adding one" << std::endl;
+				break;
+			}
+			else {
+				std::cout << "Lecturer Information: " << std::endl;
+				Lecturer_list[tutor_index].print_info();
+				std::cout << " " << std::endl;
+				std::cout << "Enter the Project/Course name" << std::endl;
+				std::cin.get();
+				std::cin.getline(name, 50);
+				std::cout << "Enter the Project/Course ID number" << std::endl;
+				std::cin.getline(ID_number, 10);
+				std::cout << "Enter the Project/Course Start Date" << std::endl;
+				std::cin.getline(start_date, 10);
+				std::cout << "Enter the Project/Course duration" << std::endl;
+				std::cin.getline(duration, 10);
+				std::cout << "Enter the Project/Course Description" << std::endl;
+				std::cin.getline(description, 100);
+			}
 
 
-		Projects_Courses new_project(name, ID_number, start_date, duration, description);
-		Project_Course_List.push_back(new_project);
-		std::cout << "Do you want to continue adding a new project? [y/n]" << std::endl;
-		this->cont = this->yes_no_option();
+			Projects_Courses new_project(name, ID_number, Lecturer_list[tutor_index].get_name(), Lecturer_list[tutor_index].get_IDnumber(),
+				start_date, duration, description);
+			Project_Course_List.push_back(new_project);
+			//Add project name and ID number to Lecturer
+			Lecturer_list[tutor_index].set_project_list(name, ID_number, tutor_project_index);
+			std::cout << "Project added successfully!" << std::endl;
+
+			std::cout << "BUGGGGGGG: " << std::endl;
+			
+			Lecturer_list[tutor_index].return_vacancy_index("HOST");
+
+			std::cout << "Do you want to create another new project?" << std::endl;
+			bool sub_cont = this->yes_no_option();
+			if (!sub_cont) break;
+		}
+		else
+		{
+			std::cout << "Invalid ID number" << std::endl;
+			std::cout << "Do you want to re-enter the ID number ? [y/n]" << std::endl;
+			this->cont = this->yes_no_option();
+		}
 	}
 }
 
@@ -687,6 +725,7 @@ void MENU::add_project_course()
 void MENU::project_course_status_change()
 {
 	char changed_status[20];
+	this->clear_screen();
 	while (this->cont) {
 		bool found = false;
 		std::size_t index = this->return_opponent_index<Projects_Courses>(Project_Course_List, found);
@@ -707,6 +746,7 @@ void MENU::project_course_status_change()
 void MENU::project_course_enrollment()
 {
 	int count = 0;
+	this->clear_screen();
 	while (this->cont) {
 		bool found = false;
 		std::size_t index = this->return_opponent_index<Projects_Courses>(Project_Course_List, found);
@@ -714,11 +754,11 @@ void MENU::project_course_enrollment()
 		{
 			bool sub_found;
 			Project_Course_List[index].print_info();
-			int check_full = Project_Course_List[index].return_occupied_vacancies();
-			if (check_full >= 7)
+			int check_full = Project_Course_List[index].return_occupied_vacancies("MEMBER");
+			if (check_full >= 5)
 			{
 				std::cout << "This Project is currently full" << std::endl;
-				std::cout << "In order to keep productivity, each project/course only has 7 members" << std::endl;
+				std::cout << "In order to keep productivity, each project/course only has 5 members" << std::endl;
 				break;
 			}
 			else {
@@ -729,25 +769,25 @@ void MENU::project_course_enrollment()
 					count++;
 					bool cont_check;
 					int student_check;
-					int vacancy_index = Project_Course_List[index].return_vacancy_index();
+					int vacancy_index = Project_Course_List[index].return_vacancy_index("MEMBER");
 					std::cout << "Student: " << count << std::endl;
 					Student_list[student_index].print_info();
 					if (!Project_Course_List[index].duplicate_member_check(Student_list[student_index].get_IDnumber())) {
 
-						student_check = Student_list[student_index].return_project_vacancy_index();
+						student_check = Student_list[student_index].return_vacancy_index("INVOLVED");
 						if (student_check == -1) {
 							std::cout << "This Student has involved in more than 2 projects" << std::endl;
 							break;
 						}
 						else {
-							std::cout << "BUGGGG" << student_check << std::endl;
 							std::cout << "Do you want to add this Student in the current project?" << std::endl;
 							cont_check = this->yes_no_option();
 							if (cont_check)
 							{
 								Project_Course_List[index].add_member(Student_list[student_index].get_name(),
 									Student_list[student_index].get_IDnumber(), vacancy_index);
-								Student_list[student_index].set_project_list(Project_Course_List[index].get_name(), student_check);
+								Student_list[student_index].set_project_list(Project_Course_List[index].get_name(),
+									Project_Course_List[index].get_IDnumber(),student_check);
 								std::cout << "Add sucessfully!" << std::endl;
 							}
 							else break;
@@ -915,4 +955,14 @@ bool MENU::yes_no_option()
 		std::cout << "Invalid Input" << std::endl;
 		this->yes_no_option();
 	}
+}
+
+void MENU::clear_screen()
+{
+#ifdef _WIN32
+	system("CLS");
+#else
+	std::cout << "\033[2J\033[1;1H";
+#endif
+
 }

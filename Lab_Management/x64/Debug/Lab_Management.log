@@ -1,11 +1,7 @@
-﻿  Equipment.cpp
-  Menu.cpp
-e:\github_stuffs\class-project\lab_management\src\menu.cpp(674): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  e:\github_stuffs\class-project\lab_management\src\menu.cpp(219): note: see reference to function template instantiation 'void MENU::return_equip<Student>(std::vector<Student,std::allocator<_Ty>> &)' being compiled
-          with
-          [
-              _Ty=Student
-          ]
-  Generating Code...
-e:\github_stuffs\class-project\lab_management\src\menu.cpp(826): warning C4715: 'MENU::yes_no_option': not all control paths return a value
+﻿  Menu.cpp
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(127): warning C4717: 'MENU::Student_Menu': recursive on all control paths, function will cause runtime stack overflow
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(183): warning C4717: 'MENU::Lecture_Menu': recursive on all control paths, function will cause runtime stack overflow
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(232): warning C4717: 'MENU::Equipment_Menu': recursive on all control paths, function will cause runtime stack overflow
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(286): warning C4717: 'MENU::Courses_Project_Menu': recursive on all control paths, function will cause runtime stack overflow
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(958): warning C4715: 'MENU::yes_no_option': not all control paths return a value
   Lab_Management.vcxproj -> E:\Github_Stuffs\class-project\x64\Debug\Lab_Management.exe

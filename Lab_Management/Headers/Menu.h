@@ -4,8 +4,6 @@
 class MENU {
 private:
 	bool cont = true;
-	std::size_t lec_index;
-	std::size_t stu_index;
 
 	std::vector <Lecturer> Lecturer_list;
 	std::vector <Student>  Student_list;
@@ -56,7 +54,7 @@ public:
 *******************BASIC MENU FUNCTIONS**********************************
 ************************************************************************/
 	bool yes_no_option();
-
+	void clear_screen();
 
 
 	template <class T>

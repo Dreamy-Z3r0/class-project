@@ -1,9 +1,12 @@
 #include"../Headers/Projects_Courses.h"
 
-Projects_Courses::Projects_Courses(char* name, char* ID_number, char* start_date, char* duration, char* description, const char* status )
+Projects_Courses::Projects_Courses(char* name, char* ID_number, char* tutor_name, char* tutor_ID_number, 
+	char* start_date, char* duration, char* description, const char* status )
 {
 	strcpy_s(this->name,50, name);
 	strcpy_s(this->ID_number, 10, ID_number);
+	strcpy_s(this->project_tutor.name, 50, tutor_name);
+	strcpy_s(this->project_tutor.ID_Number, 10, tutor_ID_number);
 	strcpy_s(this->start_date,10, start_date);
 	strcpy_s(this->duration,10, duration);
 	strcpy_s(this->status, 10, status);
@@ -35,16 +38,7 @@ void Projects_Courses::print_info()
 	std::cout << "\nDescription: " << description << std::endl;
 
 	std::cout << " " << std::endl;
-	std::cout << "Tutor(s): " << std::endl;
-	for (int i = 0; i < 2; i++)
-	{
-		if (!Tutor_list[i].vacancy)
-		{
-			std::cout << "Name: " << i + 1 << Member_List[i].name << std::endl;
-			std::cout << "ID number: " << Member_List[i].ID_Number << std::endl;
-		}
-	}
-
+	std::cout << "Tutor: " << project_tutor.name << "\t" << "Tutor ID Number: " << project_tutor.ID_Number << std::endl;
 
 	std::cout << " " << std::endl;
 	std::cout << "Member List: " << std::endl;
@@ -57,33 +51,48 @@ void Projects_Courses::print_info()
 			std::cout << "ID number: " << Member_List[i].ID_Number << std::endl;
 		}
 	}
-
 }
-int Projects_Courses::return_occupied_vacancies()
+int Projects_Courses::return_occupied_vacancies(const char* mode)
 {
 	int occuppied = 0;
-	int un_occupied = 0;
+
 	// Check occupied and unoccupied vacancy
-	for (int i = 0; i < 7; i++)
+	if (strcmp(mode, "MEMBER") == 0)
 	{
-		if (this->Member_List[i].vacancy == true)
-			un_occupied++;
-		else occuppied ++;
+		for (int i = 0; i < 5; i++)
+		{
+			if (this->Member_List[i].vacancy == false)
+				occuppied++;
+		}
+		std::cout << 5 - occuppied << " Vacancies in this project left" << std::endl;
+		std::cout << occuppied << " Students in this project" << std::endl;
 	}
-	std::cout << un_occupied << " Vacancies in this project left" << std::endl;
-	std::cout << occuppied << " Students in this project" << std::endl;
+	else if (strcmp(mode, "TUTOR") == 0)
+	{
+		if (project_tutor.vacancy == false)
+		{
+			occuppied++;
+			std::cout << "There is a tutor already!" << std::endl;
+		}
+	}
 	return occuppied;
 }
 
-int Projects_Courses::return_vacancy_index()
+int Projects_Courses::return_vacancy_index(const char* mode)
 {
-	for (int i = 0; i < 3; i++)
-	{
-		if (this->Member_List[i].vacancy == true)
+	if (strcmp(mode, "MEMBER") == 0) {
+		for (int i = 0; i < 5; i++)
 		{
-			std::cout << "first index: " << i << std::endl;
-			return i;
+			if (this->Member_List[i].vacancy == true)
+			{
+				std::cout << "first index: " << i << std::endl;
+				return i;
+			}
 		}
+	}
+	else if (strcmp(mode, "TUTOR") == 0)
+	{
+		if (this->project_tutor.vacancy == true) return 0;
 	}
 	return -1;
 }
