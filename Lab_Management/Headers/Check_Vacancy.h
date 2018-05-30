@@ -1,6 +1,6 @@
 #pragma once
 
-
+//This abstract class serves as the interface of the program.
 class Check_Vacancy
 {
 public:

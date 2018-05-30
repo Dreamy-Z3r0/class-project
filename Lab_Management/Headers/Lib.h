@@ -6,7 +6,8 @@
 #include <ctime>
 #include<string>
 #include<stdlib.h>
-
+#include<thread>
+#include<chrono>
 
 #include"Student.h"
 #include"Equipment.h"
