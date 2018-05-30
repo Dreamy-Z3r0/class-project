@@ -1,11 +1,3 @@
-﻿  Equipment.cpp
-  Menu.cpp
-e:\github_stuffs\class-project\lab_management\src\menu.cpp(674): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  e:\github_stuffs\class-project\lab_management\src\menu.cpp(219): note: see reference to function template instantiation 'void MENU::return_equip<Student>(std::vector<Student,std::allocator<_Ty>> &)' being compiled
-          with
-          [
-              _Ty=Student
-          ]
-  Generating Code...
-e:\github_stuffs\class-project\lab_management\src\menu.cpp(826): warning C4715: 'MENU::yes_no_option': not all control paths return a value
+﻿  Menu.cpp
+e:\github_stuffs\class-project\lab_management\src\menu.cpp(472): warning C4715: 'MENU::yes_no_option': not all control paths return a value
   Lab_Management.vcxproj -> E:\Github_Stuffs\class-project\x64\Debug\Lab_Management.exe

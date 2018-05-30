@@ -1,23 +1,52 @@
 #include"../Headers/Equipment.h"
 
-Equipment::Equipment(char* name, int quantity)
+
+
+
+/************************************************************************************************************
+**************************************** CONSTRUCTOR ********************************************************
+************************************************************************************************************/
+
+Equipment::Equipment(char* name, char* ID_number, int quantity)
 {
-	strcpy_s(this->name, 40, name);
+	strcpy_s(this->name, 50, name);
+	strcpy_s(this->ID_number, 10, ID_number);
 	this->quantity = quantity;
-	availability = quantity;
+	this->availability = quantity;
 }
 
 Equipment::~Equipment() {}
+
+
+/************************************************************************************************************
+****************************** BASIC EQUIPMENT SETTER AND GETTER ********************************************
+************************************************************************************************************/
+
 
 char* Equipment::get_name()
 {
 	return this->name;
 }
 
+char* Equipment::get_IDnumber()
+{
+	return this->ID_number;
+}
+
+int Equipment::get_availability() 
+{
+return this->availability;
+}
+
+
 void Equipment::set_name(char* name)
 {
-	strcpy_s(this->name, 40, name);
+	strcpy_s(this->name, 50, name);
 }
+
+/************************************************************************************************************
+************************************* BASIC EQUIPMENT OPPERATION ********************************************
+************************************************************************************************************/
 
 void Equipment::quantity_change(int num)
 {
@@ -44,11 +73,12 @@ void Equipment::availability_change(int num)
 	}
 }
 
-int Equipment::get_availability() { return this->quantity; }
 
 void Equipment::print_info() const
 {
+	//Print the equipment info
 	std::cout << "Equipment name: " << name;
+	std::cout << "\nEquipment ID number: " << ID_number;
 	std::cout << "\nIn-lab quantity: " << quantity;
 	std::cout << "\nAvailable to borrow: " << availability << std::endl;
 	std::cout << " " << std::endl;
