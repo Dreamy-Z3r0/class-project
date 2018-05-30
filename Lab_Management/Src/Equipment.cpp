@@ -50,11 +50,13 @@ void Equipment::set_name(char* name)
 
 void Equipment::quantity_change(int num)
 {
+	//If the quantity decreases, check if the decrease doesn't exceed the current quantity
 	if (-num > quantity)
 	{
 		std::cout << "Current quantity exceeded: " << quantity << std::endl;
 	}
 	else 
+	//Change the quantity
 	{
 		quantity += num;
 		availability += num;
@@ -63,10 +65,12 @@ void Equipment::quantity_change(int num)
 
 void Equipment::availability_change(int num)
 {
+	//Check if the change in the number of equipment is greater than the current available quantity
 	if (-num > availability)
 	{
 		std::cout << "Available to borrow: " << availability << " items.\n";
 	}
+	//Change the available quantity
 	else 
 	{
 		availability += num;

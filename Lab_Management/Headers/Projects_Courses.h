@@ -69,18 +69,21 @@ public:
 	bool project_check_finish();
 	//Release all its ex-member data
 	void release_all_members();
+
 	/*
 	*Return vacancy index. Return - 1 if the list is full. Also opperate in two modes :
 	*MEMBER: return vacancy indexs in member list
 	*TUTOR: return 0 if there is no tutor
 	*/
 	int return_vacancy_index(const char* mode) override;
+
 	/*
 	*Return the number of occupied vacancy(s). This function takes in 2 modes:
 	*MEMBER: return occupied vacancies in member list
 	*TUTOR: return if the tutor vacancy is occupied
 	*/
 	int return_occupied_vacancies(const char* mode) override;
+
 	//Check if there is a duplicate member in the member list
 	bool duplicate_member_check(char* ID_number);
 	//Print the project info

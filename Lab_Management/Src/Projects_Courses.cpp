@@ -20,6 +20,7 @@ Projects_Courses::Projects_Courses(char* name, char* ID_number, char* tutor_name
 	strcpy_s(this->description,100, description);
 }
 
+//Deconstructor
 Projects_Courses::~Projects_Courses() {}
 
 
@@ -39,7 +40,7 @@ char* Projects_Courses::get_IDnumber()
 
 char* Projects_Courses::get_status()
 {
-	return this->status;
+	return this->status;	//Return the project status
 }
 char* Projects_Courses::get_tutor_IDnumber()
 {
@@ -68,6 +69,34 @@ void Projects_Courses::set_tutor_name(char* name, char* id_number)	//Set tutor n
 void Projects_Courses::change_status(char* status)
 {
 	strcpy_s(this->status, 50, status);	//Rewrite the project status
+}
+
+void Projects_Courses::add_member(char* name, char* ID_number, int index)
+{
+	//copy and store data to a variable
+	strcpy_s(this->Member_List[index].name, 50, name);
+	strcpy_s(this->Member_List[index].ID_Number, 10, ID_number);
+	this->Member_List[index].vacancy = false;
+
+}
+
+void Projects_Courses::release_all_members()
+{
+	//Scan through the member list, and reset to its default state
+	for (int i = 0; i < 5; i++)
+	{
+		Member_List[i].vacancy = true;
+		strcpy_s(this->Member_List[i].name, 50, "none");
+		strcpy_s(this->Member_List[i].ID_Number, 10, "none");
+	}
+}
+
+bool Projects_Courses::project_check_finish()
+{
+	//If the project is marked as finished and abandoned
+	if (strcmp(this->status, "Finished") == 0 || strcmp(this->status, "Abandoned") == 0)
+		return true;
+	return false;
 }
 
 
@@ -123,32 +152,6 @@ int Projects_Courses::return_vacancy_index(const char* mode)
 	return -1;
 }
 
-
-void Projects_Courses::add_member(char* name, char* ID_number, int index)
-{
-	//copy and store data to a variable
-	strcpy_s(this->Member_List[index].name, 50, name);
-	strcpy_s(this->Member_List[index].ID_Number, 10, ID_number);
-	this->Member_List[index].vacancy = false;
-
-}
-
-void Projects_Courses::release_all_members()
-{
-	for (int i = 0; i < 5; i++)
-	{
-		Member_List[i].vacancy = true;
-		strcpy_s(this->Member_List[i].name, 50, "none");
-		strcpy_s(this->Member_List[i].ID_Number, 10, "none");
-	}
-}
-
-bool Projects_Courses::project_check_finish()
-{
-	if (strcmp(this->status, "Finished") == 0 || strcmp(this->status, "Abandoned") == 0)
-		return true;
-	return false;
-}
 
 bool Projects_Courses::duplicate_member_check(char* ID_number)
 {

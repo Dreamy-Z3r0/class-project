@@ -62,7 +62,7 @@ public:
 ********************************** STUDENT AND LECTURER BASIC FUNCTIONS *********************************************
 ********************************************************************************************************************/
 	
-//Add a new member (Student or Lecturer) to vectors
+	//Add a new member (Student or Lecturer) to vectors
 	template <class T>
 	void add_member(std::vector<T>& Mem_list);
 	//Print a specific member info(Student or Lecturer) based on found index

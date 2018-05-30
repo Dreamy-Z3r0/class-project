@@ -344,14 +344,15 @@ void MENU::save_file(std::string file_name, std::vector<T>& Mem_list)
 		+ binary: write data in binary mode
 	*/
 	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::trunc | std::fstream::binary);
-	//Check if the file is opened successfully or not
+	//Check if the file is opened successfully 
 	if (file.is_open()) {
 		//Set the pointer to the end of stream to write new data
 		file.seekp(0, std::ios::end);
 		for (std::size_t i = 0; i < size; i++)
 		{
-			//Write all elements of the given vector to the file, with the size of the accroding class
+			//Move the pointer to the end of stream to write data
 			file.seekp(0, std::ios::end);
+			//Write all elements of the given vector to the file, with the size of the accroding class
 			file.write((char*)&Mem_list[i], sizeof(T));
 		}
 		file.close();
@@ -366,27 +367,32 @@ void MENU::load_file(std::string file_name, std::vector<T>& Mem_list)
 {
 	//Create a temp object with class T
 	T check;
-	//std::cout << "size of a class" << sizeof(T) << std::endl;
+	//Store the size of the vector to a variable
 	std::size_t size = Mem_list.size();
+	//Create an instance of fstream
 	std::fstream file;
+	/*Open the file with the following modes:
+	+ in (input):	open the file for reading purpose
+	+ out (Output):	open the file for writing purpose
+	+ binary: write data in binary mode
+	*/
 	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::binary);
-
+	//Check if the file is opened successfully
 	if (file.is_open()) {
 
 		file.seekg(0, std::ios::end);	//move the pointer to the end of the file to get data
-		std::streamoff end_point = file.tellg();		  // Return the position of pointer
+		std::streamoff end_point = file.tellg();	// Return the position of pointer
 														  
 		std::streamoff size_of_file = end_point / sizeof(T);	//Return the number of element with size of class T in the file
 		file.seekg(0, std::ios::beg);     //move back to the beginning of the file
 
-		//std::streamoff fl_sz = file.tellg();
 		for (std::streamoff i = 0; i < size_of_file; i++)
 		{
-			//std::streamoff fl_sz = file.tellg();
 			file.read((char*)&check, sizeof(T)); //Store the read data to a same type object, named "check" in this case.
 			Mem_list.push_back(check);			// Add the object to the vector
 		}
 		std::cout << "Receiving data..." << std::endl;
+		//Sleep for one second 
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 		
 	}
@@ -411,7 +417,6 @@ void MENU::print_vector_list(std::vector<T>& list)
 		list[i].print_info();
 	}
 	this->press_any_key();
-
 }
 
 
@@ -460,7 +465,8 @@ std::size_t MENU::return_opponent_index(std::vector<T>& Mem_list, char* IDnumber
 
 
 bool MENU::yes_no_option()
-{
+{	
+	//Create a string variable
 	std::string a;
 	std::cin >> a;
 	if (a == "y") return true;			
@@ -470,6 +476,8 @@ bool MENU::yes_no_option()
 		this->yes_no_option();
 	}
 }
+
+
 bool MENU::press_any_key()
 {
 	std::string a;
@@ -507,7 +515,7 @@ void MENU::add_member(std::vector<T>& Mem_list)
 		this->clear_screen();
 		//Input all the basic info
 		std::cout << "Enter the name" << std::endl;
-		std::cin.get();				//Enter sucks in the input buffer until it encounters another input statement. So use cin.get() to get risk of it.
+		std::cin.get();	//Enter sucks in the input buffer until it encounters another input statement. So use cin.get() to get risk of it.
 		std::cin.getline(name, 50);		
 		std::cout << "Enter the email" << std::endl;
 		std::cin.getline(email, 50);
@@ -566,28 +574,28 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 					std::cout << "Enter the name" << std::endl;
 					std::cin.get();
 					std::cin.getline(c_input,50);
-					Mem_list[index].set_name(c_input);		//Set name
+					Mem_list[index].set_name(c_input);		//Update name
 				}
 				else if (choice == 2)
 				{
 					std::cout << "Enter the Email" << std::endl;
 					std::cin.get();
 					std::cin.getline(c_input, 50);
-					Mem_list[index].set_email(c_input);		//Set email
+					Mem_list[index].set_email(c_input);		//Update email
 				}
 				else if (choice == 3)
 				{
 					std::cout << "Enter the Telephone Number" << std::endl;
 					std::cin.get();
 					std::cin.getline(tele_input, 20);
-					Mem_list[index].set_phonenumber(tele_input);	//Set telephone number
+					Mem_list[index].set_phonenumber(tele_input);	//Update telephone number
 				}
 				else if (choice == 4)
 				{
 					std::cout << "Enter the ID Number" << std::endl;
 					std::cin.get();
 					std::cin.getline(tele_input, 10);
-					Mem_list[index].set_IDnumber(n_input);		//Set ID number
+					Mem_list[index].set_IDnumber(n_input);		//Update ID number
 				}
 				else std::cout << "Invalid Choice!" << std::endl;
 				std::cout << "Do you want to change other information? [y/n]" << std::endl; // User input to decide whether to continue or not
@@ -598,7 +606,6 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 		std::cout << "Do you want to change other member infomation? [y/n]" << std::endl;
 		this->cont = this->yes_no_option();
 	}
-
 }
 
 
@@ -625,7 +632,6 @@ void MENU::remove_member(std::vector<T>& Mem_list)
 		this->cont = this->yes_no_option();
 	}
 }
-
 
 
 /********************************************************************************************************************
@@ -664,6 +670,7 @@ void MENU::check_out(std::vector<T>& Mem_list)
 	this->clear_screen();
 	while (this->cont) {
 		bool found = false;
+		//Finding the equipment and return its index
 		std::size_t equip_index = this->return_opponent_index<Equipment>(Equipment_list, found); //Finding the equipment
 		if (found) //If the equipment is found, then proceed to the check-out process
 		{
@@ -693,12 +700,8 @@ void MENU::check_out(std::vector<T>& Mem_list)
 
 						//If user info exists in database
 						char date[5];
-						int borrowed = Mem_list[mem_index].return_occupied_vacancies("BORROW"); // Return the equipment that the user has borrowed
+						int borrowed = Mem_list[mem_index].return_occupied_vacancies("BORROW"); // Return the number of equipment that the user has borrowed
 						int vacancy = Mem_list[mem_index].return_vacancy_index("BORROW");	//Return the vacancy index in user borrow list
-						std::cout << "The Member Info is: " << borrowed << std::endl;
-						std::cout << "The Member Info is: " << vacancy << std::endl;
-
-						std::cout << "The Member Info is: " << std::endl;
 						Mem_list[mem_index].print_info();
 						if (borrowed >= 3) //Check if the user has borrowed more than 3 equipments or not
 						{
@@ -921,7 +924,9 @@ void MENU::project_course_status_change()
 	while (this->cont) {
 		this->clear_screen();
 		bool found = false;
-		std::size_t index = this->return_opponent_index<Projects_Courses>(Project_Course_List, found);	//Find the project
+		//Find the project and return its index
+		std::size_t index = this->return_opponent_index<Projects_Courses>(Project_Course_List, found);	
+		//If the Project/Course is found
 		if (found)
 		{
 			char project_id[10];
