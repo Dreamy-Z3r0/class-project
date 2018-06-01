@@ -9,7 +9,7 @@ struct borrowthings
 	char name[50] = "None";
 	char ID_number[10] = "None";
 	int quantity = 0;
-	char date[5] = "N/A";
+	char date[10] = "N/A";
 };
 
 //Set up a struct to store project data

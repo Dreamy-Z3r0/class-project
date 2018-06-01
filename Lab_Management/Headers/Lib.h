@@ -6,6 +6,7 @@
 #include <ctime>
 #include<string>
 #include<stdlib.h>
+#include<cctype>
 #include<thread>
 #include<chrono>
 

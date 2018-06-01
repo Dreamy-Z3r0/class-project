@@ -39,7 +39,7 @@ int  Lecturer::return_occupied_vacancies(const char* mode)
 				occuppied++;
 		}
 		std::cout << 5 - occuppied << " Project Hosted Vacancy(ies) left" << std::endl;
-		std::cout << occuppied << "Project(s) Hosted" << std::endl;
+		std::cout << occuppied << " Project(s) Hosted" << std::endl;
 	}
 	return occuppied;	//Return the occupied vacancy
 }
@@ -103,8 +103,8 @@ void Lecturer::print_info()
 	std::cout << " " << std::endl;
 	std::cout << "Full Lecturer Name: " << this->name << std::endl;
 	std::cout << "Email Adress: " << this->email << std::endl;
-	std::cout << "Phone Number" << this->phonenumber << std::endl;
-	std::cout << "ID Number " << this->ID_Number << std::endl;
+	std::cout << "Phone Number: " << this->phonenumber << std::endl;
+	std::cout << "ID Number: " << this->ID_Number << std::endl;
 	std::cout << "************" << std::endl;
 	//Check if there is any equipment in the borrow list
 	if (this->return_occupied_vacancies("BORROW") == 0)

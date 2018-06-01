@@ -23,9 +23,9 @@ void Student::set_name(char* name)						{ strcpy_s(this->name, 50, name); }
 
 void Student::set_email(char* email)					{ strcpy_s(this->email, 50, email); }
 
-void Student::set_phonenumber(char* phonenumber)	    { strcpy_s(this->ID_Number, 10, ID_Number); }
+void Student::set_phonenumber(char* phonenumber)	    { strcpy_s(this->phonenumber, 20, phonenumber); }
 
-void Student::set_IDnumber(char* ID_Number)			    { strcpy_s(this->phonenumber, 20, phonenumber); }
+void Student::set_IDnumber(char* ID_Number)			    { strcpy_s(this->ID_Number, 10, ID_Number); }
 
 
 
@@ -65,7 +65,7 @@ void Student::set_borrow_list(char* equip_name, char* ID_number, int index, int 
 	strcpy_s(this->borrowed_list[index].ID_number, 10, ID_number);
 	this->borrowed_list[index].vacancy = false;
 	this->borrowed_list[index].quantity = quantity;
-	strcpy_s(this->borrowed_list[index].date, 5, date);
+	strcpy_s(this->borrowed_list[index].date, 10, date);
 }
 
 
@@ -76,7 +76,7 @@ void Student::return_all_equipments(int vacancy)
 	strcpy_s(this->borrowed_list[vacancy].ID_number, 10, "none");
 	this->borrowed_list[vacancy].vacancy = true;
 	this->borrowed_list[vacancy].quantity = 0;
-	strcpy_s(this->borrowed_list[vacancy].date, 5, "N/A");
+	strcpy_s(this->borrowed_list[vacancy].date, 10, "N/A");
 }
 
 
@@ -120,7 +120,7 @@ int  Student::return_occupied_vacancies(const char* mode)
 			if (this->borrowed_list[i].vacancy == false)	//If the vacancy is false, this place is already occupied
 				occuppied += 1 * borrowed_list[i].quantity; //Check for the quantity of the equipment in each index
 		}
-		std::cout << 3 - occuppied  << "Equipment Vacancy(ies) left" << std::endl;
+		std::cout << 3 - occuppied  << " Equipment Vacancy(ies) left" << std::endl;
 		std::cout << occuppied << " Equipment(s) borrowed" << std::endl;
 	}
 	else if (strcmp(mode, "INVOLVED") == 0)
@@ -132,7 +132,7 @@ int  Student::return_occupied_vacancies(const char* mode)
 				occuppied++;
 		}
 		std::cout << 2 - occuppied << " Project Vacancy(ies) left" << std::endl;
-		std::cout << occuppied << "Project(s) involved" << std::endl;
+		std::cout << occuppied << " Project(s) involved" << std::endl;
 	}
 	return occuppied;
 }
@@ -178,8 +178,8 @@ void Student::print_info()
 	std::cout << " " << std::endl;
 	std::cout << "Full Student Name: " << this->name << std::endl;
 	std::cout << "Email Adress: " << this->email << std::endl;
-	std::cout << "Phone Number" << this->phonenumber << std::endl;
-	std::cout << "ID Number " << this->ID_Number << std::endl;
+	std::cout << "Phone Number: " << this->phonenumber << std::endl;
+	std::cout << "ID Number: " << this->ID_Number << std::endl;
 	std::cout << "************" << std::endl;
 	//Check if there is any equipment in the borrow list
 	if (this->return_occupied_vacancies("BORROW") == 0)	
@@ -205,10 +205,9 @@ void Student::print_info()
 		for (int i = 0; i < 2; i++)	//Scan the project list and print the project info (if any)
 		{
 			//Check for the occuped index
-			std::cout << "Index: " << i << std::endl;
 			if (!this->involved__list[i].vacancy)
 				//Print the project info if encounter a occupied index
-				std::cout <<"Index in condition: " << involved__list[i].vacancy <<  "Project involved: " << this->involved__list[i].name << "\n" << "Project ID Number: " << this->involved__list[i].ID_number << std::endl;
+				std::cout  <<  "Project involved: " << this->involved__list[i].name << "\n" << "Project ID Number: " << this->involved__list[i].ID_number << std::endl;
 		}
 	}	
 	std::cout << "************" << std::endl;

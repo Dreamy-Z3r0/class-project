@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Both Student and Project_Courses class inherit the same Abstract Class, Check_Vacancy">
+    <Position X="2.757" Y="0.618" Height="0.451" Width="3.137" />
+  </Comment>
+  <Class Name="Equipment" Collapsed="true">
+    <Position X="7" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAACAABAAAIQQAAQAEAACAACAACIAAgAA=</HashCode>
+      <FileName>Headers\Equipment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lecturer" Collapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIAAAGABAAAAAAAABAAAAAAAACAAAAAAASAAAAAAAAA=</HashCode>
+      <FileName>Headers\Lecturer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MENU">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQgIAQACCAAIABgIRAAgwACBAhSgAAEQAhAAAAABBU=</HashCode>
+      <FileName>Headers\Menu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects_Courses">
+    <Position X="2.5" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEYEAEIAAJIAACACJAAABAACACCEAAAAYAAAAIIAAAA=</HashCode>
+      <FileName>Headers\Projects_Courses.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Student" Collapsed="true">
+    <Position X="4.75" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AMEAEEAAYEAAAAAgBAABABQAAHAEAAAAAaACCIAAAQA=</HashCode>
+      <FileName>Headers\Student.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

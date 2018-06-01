@@ -38,18 +38,26 @@ public:
 	//Save objects(all kinds) from a vector to a file
 	template <class T>
 	void save_file(std::string file_name, std::vector<T>& Mem_list);
+
 	//Load objects(all kinds) from a file to a vector
 	template <class T>
 	void load_file(std::string file_name, std::vector<T>& Mem_list);
+
 	//Print the list of all members(Student and Lecturers)
 	template <class T>
 	void print_vector_list(std::vector<T>& list);
+
 	//Return a object index in a vector (regardless of class). Required user input
 	template <class T>
 	std::size_t return_opponent_index(std::vector<T>& list, bool &found);
+
 	//Return a object index in a vector (regardless of class). Does not require user-input
 	template<class T>
 	std::size_t return_opponent_index(std::vector<T>& Mem_list, char* IDnumber, bool &found);
+
+
+	//Enter user's choices
+	int get_user_input();
 	//Used for yes no option.Return true when input is 'y' and false when 'n'
 	bool yes_no_option();
 	//Wait for user-confirmation to proceed, take every kinds of string input and return true
@@ -65,12 +73,15 @@ public:
 	//Add a new member (Student or Lecturer) to vectors
 	template <class T>
 	void add_member(std::vector<T>& Mem_list);
+
 	//Print a specific member info(Student or Lecturer) based on found index
 	template<class T>
 	void find_member(std::vector<T>& Mem_list);
+
 	//Update a specific member info (Student or Lecturer) based on found index
 	template<class T>
 	void change_member_info(std::vector<T>& Mem_list);
+
 	//Remove a specific member info (Student or Lecturer) based on found index
 	template<class T>
 	void remove_member(std::vector<T>& Mem_list);
@@ -91,6 +102,7 @@ public:
 	void return_equip(std::vector<T>& Mem_list);
 	//Re-activate project if there it has been finished or abandoned
 	void re_activate_project(std::size_t index);
+
 
 	/*Add a new project/course.
 	*In order to create one, user has to input a valid Lecturer ID number, of whom will be the project's tutor

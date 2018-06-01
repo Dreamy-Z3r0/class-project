@@ -24,7 +24,6 @@
     <ClInclude Include="Headers\Student.h" />
     <ClInclude Include="Headers\Lecturer.h" />
     <ClInclude Include="Headers\Lib.h" />
-    <ClInclude Include="Headers\Member.h" />
     <ClInclude Include="Headers\Menu.h" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +33,9 @@
     <ClCompile Include="Src\Menu.cpp" />
     <ClCompile Include="Src\Projects_Courses.cpp" />
     <ClCompile Include="Src\Student.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -13,13 +13,11 @@
  */
 
 MENU::MENU()
-{
-	
+{	
 	this->load_file<Student>("Resources/Student_List.dat", Student_list);
 	this->load_file<Lecturer>("Resources/Lecturer_List.dat", Lecturer_list);
 	this->load_file<Equipment>("Resources/Equipment_List.dat", Equipment_list);
-	this->load_file<Projects_Courses>("Resources/Project_Course_List.dat", Project_Course_List);
-
+	this->load_file<Projects_Courses>("Resources/Project_Course_List.dat", Project_Course_List);	
 }
 
 
@@ -32,9 +30,9 @@ MENU::MENU()
 
 void MENU::Main_menu()
 {
+	
 Main_Screen:
 	//Variables declaration
-	int choice;
 	this->cont = true;
 	
 	//Clear everything left on the screen
@@ -48,10 +46,10 @@ Main_Screen:
 	std::cout << "3: Lab Equipment" << std::endl;
 	std::cout << "4: Courses/Project" << std::endl;
 	std::cout << "Enter your choice [1-4]" << std::endl;
+	
+	int option = this->get_user_input();
 
-	std::cin >> choice;
-
-	switch (choice)
+	switch (option)
 	{
 
 	case 1: {
@@ -103,7 +101,7 @@ void MENU::Student_Menu()
 		std::cout << "5: Remove Student info" << std::endl;
 		std::cout << "6: Back" << std::endl;
 		std::cout << "Enter your choice [1-6]" << std::endl;
-		std::cin >> sub_choice;
+		sub_choice = this->get_user_input();
 		switch (sub_choice)
 		{
 		case 1: {
@@ -151,7 +149,8 @@ void MENU::Lecture_Menu()
 		std::cout << "5: Remove Lecturer info" << std::endl;
 		std::cout << "6: Back" << std::endl;
 		std::cout << "Enter your choice [1-6]" << std::endl;
-		std::cin >> sub_choice;
+		
+		sub_choice = this->get_user_input();
 		switch (sub_choice)
 		{
 		case 1: {
@@ -204,7 +203,7 @@ void MENU::Equipment_Menu()
 		std::cout << "4: Return" << std::endl;
 		std::cout << "5: Back" << std::endl;
 		std::cout << "Enter your choice [1-5]" << std::endl;
-		std::cin >> sub_choice;
+		sub_choice = this->get_user_input();
 		switch (sub_choice)
 		{
 		case 1: {
@@ -219,7 +218,7 @@ void MENU::Equipment_Menu()
 			this->clear_screen();
 			int check_out_choice;
 			std::cout << "Identify yourself, are you a: [1] Student, [2] Lecturer ? " << std::endl;	// Check if the borrower is a Student or Lecturer
-			std::cin >> check_out_choice;
+			check_out_choice = this->get_user_input();
 			switch (check_out_choice)
 			{
 			case 1: {
@@ -240,7 +239,7 @@ void MENU::Equipment_Menu()
 			this->clear_screen();
 			int check_out_choice;
 			std::cout << "Identify yourself, are you a: [1] Student, [2] Lecturer ? " << std::endl; // Check if the borrower is a Student or Lecturer
-			std::cin >> check_out_choice;
+			check_out_choice = this->get_user_input();
 			switch (check_out_choice)
 			{
 			case 1: {
@@ -254,7 +253,10 @@ void MENU::Equipment_Menu()
 				this->return_equip<Lecturer>(Lecturer_list);				//Return an equipment (Lecturer)
 				break;
 			}
-			default: {}
+			default: {
+				std::cout << "Invalid Input" << std::endl;
+				break;
+			}
 			}
 			break; }
 		case 5: {
@@ -286,7 +288,7 @@ void MENU::Courses_Project_Menu()
 		std::cout << "5: Back" << std::endl;
 
 		std::cout << "Enter your choice [1 or 2]" << std::endl;
-		std::cin >> sub_choice;
+		sub_choice = this->get_user_input();
 		switch (sub_choice)
 		{
 		case 1:
@@ -391,7 +393,7 @@ void MENU::load_file(std::string file_name, std::vector<T>& Mem_list)
 			file.read((char*)&check, sizeof(T)); //Store the read data to a same type object, named "check" in this case.
 			Mem_list.push_back(check);			// Add the object to the vector
 		}
-		std::cout << "Receiving data..." << std::endl;
+		std::cout << "Initializing data..." << std::endl;
 		//Sleep for one second 
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 		
@@ -464,6 +466,33 @@ std::size_t MENU::return_opponent_index(std::vector<T>& Mem_list, char* IDnumber
 }
 
 
+int MENU::get_user_input() {
+	//Variable declaration
+	int choice;
+	bool error_check = true;
+check:
+	//Enter user input
+	std::cin >> choice;
+	//Return the next character in the input stream
+	int a = std::cin.peek();
+	//If the next charater is a new line then no error returns
+	if (a == 10) error_check = false;
+	//Check if the input fail or not
+	if(std::cin.fail() || error_check)
+	{
+		// Clear errors (like the failbit flag)
+		std::cin.clear();
+
+		// Throw away the rest of the line
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+		std::cout << "Wrong input, please enter a number: " << std::endl;
+		goto check;
+	}
+	return choice;
+}
+
+
 bool MENU::yes_no_option()
 {	
 	//Create a string variable
@@ -482,7 +511,8 @@ bool MENU::press_any_key()
 {
 	std::string a;
 	std::cout << "Press any key to go back" << std::endl;
-	std::cin >> a;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::getline(std::cin, a);
 	return true;
 }
 
@@ -564,12 +594,13 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 			bool sub_cont = true;
 			while (sub_cont) {
 				int choice;
+				this->clear_screen();
 				Mem_list[index].print_info();
 				//Sub menu interface
 				std::cout << "What do you want to change?" << std::endl;
 				std::cout << "Enter [1] Name, [2] Email, [3] Telephone Number [4] ID Number" << std::endl;
 				//Options to change member specific info
-				std::cin >> choice;
+				choice = this->get_user_input();
 				if (choice == 1) {
 					std::cout << "Enter the name" << std::endl;
 					std::cin.get();
@@ -594,7 +625,7 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 				{
 					std::cout << "Enter the ID Number" << std::endl;
 					std::cin.get();
-					std::cin.getline(tele_input, 10);
+					std::cin.getline(n_input, 10);
 					Mem_list[index].set_IDnumber(n_input);		//Update ID number
 				}
 				else std::cout << "Invalid Choice!" << std::endl;
@@ -612,8 +643,8 @@ void MENU::change_member_info(std::vector<T>& Mem_list)
 template<class T>
 void MENU::remove_member(std::vector<T>& Mem_list)
 {
-	this->clear_screen();
 	while (this->cont) {
+		this->clear_screen();
 		bool found = false;
 		std::size_t index = this->return_opponent_index<T>(Mem_list, found); //Find the member and return the member index
 		if (found) //If the member is found
@@ -644,8 +675,8 @@ void MENU::add_equipment()
 	//Variable declaration
 	char name[50], ID_number[10];
 	int quantity;
-	this->clear_screen();
 	while (cont) {
+		this->clear_screen();
 		//Get the user input
 		std::cout << "Enter equipment name" << std::endl;
 		std::cin.get();
@@ -653,7 +684,8 @@ void MENU::add_equipment()
 		std::cout << "Enter equipment ID_Number" << std::endl;
 		std::cin >> ID_number;
 		std::cout << "Enter the quantity" << std::endl;
-		std::cin >> quantity;
+		//return exception if the input is char type
+		quantity = this->get_user_input();
 		//Create an instance of Equipment
 		Equipment new_equip(name, ID_number, quantity);
 		//Add the instance to the end of the vector
@@ -667,13 +699,14 @@ void MENU::add_equipment()
 template<class T>
 void MENU::check_out(std::vector<T>& Mem_list)
 {
-	this->clear_screen();
 	while (this->cont) {
+		this->clear_screen();
 		bool found = false;
 		//Finding the equipment and return its index
 		std::size_t equip_index = this->return_opponent_index<Equipment>(Equipment_list, found); //Finding the equipment
 		if (found) //If the equipment is found, then proceed to the check-out process
 		{
+			this->clear_screen();
 			bool choice;
 			//Print the equip info and ask the user to confirm
 			Equipment_list[equip_index].print_info();
@@ -699,7 +732,7 @@ void MENU::check_out(std::vector<T>& Mem_list)
 						//Check the equipment availibility in database 
 
 						//If user info exists in database
-						char date[5];
+						char date[10];
 						int borrowed = Mem_list[mem_index].return_occupied_vacancies("BORROW"); // Return the number of equipment that the user has borrowed
 						int vacancy = Mem_list[mem_index].return_vacancy_index("BORROW");	//Return the vacancy index in user borrow list
 						Mem_list[mem_index].print_info();
@@ -716,7 +749,8 @@ void MENU::check_out(std::vector<T>& Mem_list)
 						availability_check:
 											
 							std::cout << "How many do you want to borrow? " << std::endl;
-							std::cin >> quantity;
+							//return exception if the input is char type
+							quantity = this->get_user_input();
 							//Check if the desired quantity is greater than the available quantity of the equipment
 							if(quantity  > availability)
 							{
@@ -739,8 +773,6 @@ void MENU::check_out(std::vector<T>& Mem_list)
 							}
 							else {
 								//All the requiremnts are met!
-								std::cout << "Avaibility: " << Equipment_list[equip_index].get_availability() << std::endl;
-								std::cout << "Avaibility: " << Equipment_list[equip_index].get_availability() << std::endl;
 								std::cout << "Enter date" << std::endl;
 								std::cin >> date;
 								Mem_list[mem_index].set_borrow_list(Equipment_list[equip_index].get_name(),
@@ -766,8 +798,8 @@ void MENU::check_out(std::vector<T>& Mem_list)
 template<class T>
 void MENU::return_equip(std::vector<T>& Mem_list)
 {
-	this->clear_screen();
 	while (this->cont) {
+		this->clear_screen();
 		bool found = false;
 		std::size_t index = this->return_opponent_index(Mem_list, found); //Finding the Member info based on user-input ID
 		if (found)	//If the member is found
@@ -782,7 +814,7 @@ void MENU::return_equip(std::vector<T>& Mem_list)
 				equip_index = this->return_opponent_index<Equipment>(Equipment_list, sub_found); //Finding the equipment 
 				if (sub_found) {
 					char input_ID[10];
-					char date[5];
+					char date[10];
 					strcpy_s(input_ID, 10, Equipment_list[equip_index].get_IDnumber());		//Store Equipment ID to the variable
 					for (int i = 0; i < 3; i++)		//Check for all index in the borrow list
 					{	

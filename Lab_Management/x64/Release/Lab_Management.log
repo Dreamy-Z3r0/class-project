@@ -1,0 +1,12 @@
+﻿  Equipment.cpp
+  Lecture.cpp
+  Menu.cpp
+  Projects_Courses.cpp
+  Student.cpp
+  main.cpp
+  Generating code
+  131 of 552 functions (23.7%) were compiled, the rest were copied from previous compilation.
+    8 functions were new in current compilation
+    66 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Lab_Management.vcxproj -> E:\Github_Stuffs\class-project\x64\Release\Lab_Management.exe
